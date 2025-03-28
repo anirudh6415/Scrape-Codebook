@@ -63,7 +63,39 @@ We then find the maximum length of the subsequence formed by including or exclud
 
 ***
 
-#### 2. **Tabulation Dynamic Programming (DP)**
+#### 2. **Memoization Dynamic Programming (DP)**
+
+In this approach, We have used a dictionary for the same intuition of recursion to avoid re-calculation. Although it is not an optimized solution.
+
+**Code - Memoization DP Solution**
+
+```python
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        def dfs(idx , prev,memo):
+            if len(nums) == 1:
+                return 1
+            if idx == len(nums):
+                return 0
+
+            if (idx,prev) in memo:
+                return memo[(idx,prev)]
+
+            include =0
+            if prev == -1 or nums[idx] > nums[prev]:
+                include = dfs(idx+1,idx,memo)+1
+
+            exclude = dfs(idx+1,prev,memo)
+
+            memo[(idx,prev)] = max(include,exclude)
+            return memo[(idx,prev)]
+
+        return dfs(0,-1,{})
+```
+
+***
+
+#### 3. **Tabulation Dynamic Programming (DP)**
 
 
 
@@ -74,21 +106,10 @@ We then find the maximum length of the subsequence formed by including or exclud
 
 ***
 
-#### 3. **Memoization Dynamic Programming (DP)**
-
-
-
-**Code - Memoization DP Solution**
-
-```python
-```
-
-***
-
 ### Time Complexity
 
-* **Recursive Approach:** `O(2^n)` due to the exponential number of calls (without optimization).
+* **Recursive Approach:** `O(2^n)` Due to the exponential number of calls (without optimization).
+* **Memoization DP:**  `O(n^2)` since we memoize the results for subproblems, making it more efficient than the naive recursive approach.
 * **Tabulation DP:**&#x20;
-* **Memoization DP:**&#x20;
 
 ***
