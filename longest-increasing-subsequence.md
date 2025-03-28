@@ -97,11 +97,25 @@ class Solution:
 
 #### 3. **Tabulation Dynamic Programming (DP)**
 
+In this approach, we use a table (`dp` array) where each entry `dp[i]` represents the length of the longest increasing subsequence that ends at index `i`.
 
+* Initialize `dp[i]` as 1 for all elements (since each element by itself is an increasing subsequence).
+* For each element, check all the previous elements, and if `nums[i] > nums[j]`, update `dp[i]` to the maximum value of `dp[i]` and `dp[j] + 1`.
 
 **Code - Tabulation DP Solution**
 
 ```python
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return 1
+        dp = [1]  * len(nums)
+        for i in range(1,len(nums)):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j]+1)
+                
+        return max(dp)
 ```
 
 ***
@@ -110,6 +124,6 @@ class Solution:
 
 * **Recursive Approach:** `O(2^n)` Due to the exponential number of calls (without optimization).
 * **Memoization DP:**  `O(n^2)` since we memoize the results for subproblems, making it more efficient than the naive recursive approach.
-* **Tabulation DP:**&#x20;
+* **Tabulation DP:**  `O(n^2)` where `n` is the length of the input list, as we use two nested loops to fill the `dp` array.
 
 ***
