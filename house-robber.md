@@ -133,7 +133,7 @@ Bottom-up DP approach, We iteratively find maximum money that can be robbed or n
 
 ***
 
-4\.  Space optimized:&#x20;
+#### 4. Space Optimzed Dp
 
 Bottom-up DP approach, We iteratively find maximum money that can be robbed or not.  We are not storing the results in a DP table(Dp array), insted we can use prev, prev2.
 
@@ -161,12 +161,16 @@ class Solution:
         return prev
 ```
 
+***
+
 ### Time Complexity
 
 * **Recursive Approach:** `O(2^n)` Due to the exponential number of calls (without optimization).
 * **Memoization DP:**  `O(n)` Since we memoize the results for subproblems, making it more efficient than the naive recursive approach.
 * **Tabulation DP:**  `O(n)` as it iterates through the list once and fills up the dp array in **`O(1)`**&#x70;er step.
 * **Space optimized**: `O(n)` as it iterates through the list.
+
+***
 
 ### Space Complexity
 
