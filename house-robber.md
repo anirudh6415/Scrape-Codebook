@@ -133,16 +133,46 @@ Bottom-up DP approach, We iteratively find maximum money that can be robbed or n
 
 ***
 
+4\.  Space optimized:&#x20;
+
+Bottom-up DP approach, We iteratively find maximum money that can be robbed or not.  We are not storing the results in a DP table(Dp array), insted we can use prev, prev2.
+
+1. Include the current house: Rob's current house and add money from the last non-adjacent house (i-2).
+2. Exclude the current house: Take the maximum money robbed from the previous house (i-1).&#x20;
+
+```python
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        prev = nums[0]
+        prev2 = 0
+
+        for i in range(1,len(nums)):
+            include = nums[i]
+            if i>1:
+                include += prev2
+            exclude = prev
+
+
+
+            curr = max(include,exclude)
+            prev2 = prev
+            prev = curr 
+        
+        return prev
+```
+
 ### Time Complexity
 
 * **Recursive Approach:** `O(2^n)` Due to the exponential number of calls (without optimization).
 * **Memoization DP:**  `O(n)` Since we memoize the results for subproblems, making it more efficient than the naive recursive approach.
 * **Tabulation DP:**  `O(n)` as it iterates through the list once and fills up the dp array in **`O(1)`**&#x70;er step.
+* **Space optimized**: `O(n)` as it iterates through the list.
 
 ### Space Complexity
 
-* **Recursive Approach:** **O(n)** (due to recursion stack)
-* **Memoization DP:** **O(n)** (dictionary storing results for `n` indices)
-* **Tabulation DP:** **O(n)** (array of size `n`)
+* **Recursive Approach:** **`O(n)`** (due to recursion stack)
+* **Memoization DP:** **`O(n)`** (dictionary storing results for `n` indices)
+* **Tabulation DP:** **`O(n)`** (array of size `n`)
+* **Space optimized**: `O(1)` (Prev, prev2 elements used instead of array)
 
 ***
