@@ -106,19 +106,43 @@ class Solution:
 
 #### 3. **Tabulation Dynamic Programming (DP)**
 
+Bottom-up DP approach, We iteratively find maximum money that can be robbed or not.  We will store the results in a DP table(Dp array).
 
+1. Include the current house: Rob's current house and add money from the last non-adjacent house (i-2).
+2. Exclude the current house: Take the maximum money robbed from the previous house (i-1).&#x20;
 
 **Code - Tabulation DP Solution**
 
-```python
-```
+<pre class="language-python"><code class="lang-python"><strong>class Solution:
+</strong>    def rob(self, nums: List[int]) -> int:
+
+        dp = [0] * len(nums)
+
+        dp[0] = nums[0]
+
+        for i in range(1,len(nums)):
+            include = nums[i]
+            if i>1:
+                include += dp[i-2]
+            exclude = 0 + dp[i-1]
+
+            dp[i] = max(include,exclude)
+        
+        return dp[-1]
+</code></pre>
 
 ***
 
 ### Time Complexity
 
 * **Recursive Approach:** `O(2^n)` Due to the exponential number of calls (without optimization).
-* **Memoization DP:**  `O(n^2)` Since we memoize the results for subproblems, making it more efficient than the naive recursive approach.
-* **Tabulation DP:** &#x20;
+* **Memoization DP:**  `O(n)` Since we memoize the results for subproblems, making it more efficient than the naive recursive approach.
+* **Tabulation DP:**  `O(n)` as it iterates through the list once and fills up the dp array in **`O(1)`**&#x70;er step.
+
+### Space Complexity
+
+* **Recursive Approach:** **O(n)** (due to recursion stack)
+* **Memoization DP:** **O(n)** (dictionary storing results for `n` indices)
+* **Tabulation DP:** **O(n)** (array of size `n`)
 
 ***
