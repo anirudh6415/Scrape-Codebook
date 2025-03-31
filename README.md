@@ -1,3 +1,22 @@
+---
+cover: .gitbook/assets/ChatGPT Image Mar 31, 2025, 06_02_09 PM.png
+coverY: 0
+layout:
+  cover:
+    visible: true
+    size: full
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
 # Problem Summary
 
 
