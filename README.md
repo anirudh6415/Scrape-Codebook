@@ -6,11 +6,11 @@ description: Notes for people with unorganized preparations with Organized Inten
 
 <figure><img src=".gitbook/assets/drawing.jpg" alt="" width="375"><figcaption><p>"Ink. Intent. Infinite."</p></figcaption></figure>
 
-> _"ವಿಚಾರ, ಅನುಭವ ಮಟ್ಟು ಸಹಸ — ಈ ಮೂರು ಜೀವನದಳ್ಳಿ ಬೆಳವಿಕೆಗೆ ಬೆಜರಿಲ್ಲಾದ ಸಖಿಗಳು."_\
+> [_"ನಾವು ಬಯಸಿದಂತೆ ಬದುಕುವ ಸ್ವಾತಂತ್ರ್ಯ ಯಾವತ್ತೂ ಭಯಾನಕ ಹೋರಾಟದ ಫಲವೇ ಹೊರತು ಸುಲಭಕ್ಕೆ ಸಿಗುವುದಿಲ್ಲ."_](#user-content-fn-1)[^1]> \
 > — **K. Poornachandra Tejaswi**
 >
-> _“Creativity begins where comfort ends. If you wish to discover new worlds, be ready to leave the ones you know.”_\
-> — _Adapted from Kuvempu's spirit of “Vishwamanava”_
+> _“_[_ಟೀಕೆಗಳು ಸಾಯುತ್ತವೆ. ಕೆಲಸಗಳು ಉಳಿಯುತ್ತವೆ._](#user-content-fn-2)[^2]_”_\
+> — _Kuvempu_
 >
 > _“Stay hungry. Stay foolish.”_\
 > — **Steve Jobs**
@@ -67,3 +67,7 @@ It’s not a tutorial series or a course.\
 It’s just **a reflection of the journey**, with all its highs, errors, and iterations.
 
 If you stumble on this, I hope it helps you too. If not, it’ll help me one day when I forget what a decorator does in Python... again.
+
+[^1]: Translation : The freedom to live as we wish is always a terrible fight since we will not get it easily
+
+[^2]: Criticisms die. Works remain.
