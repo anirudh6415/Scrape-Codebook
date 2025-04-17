@@ -2,7 +2,7 @@
 
 #### 1. **Defining Functions**
 
-Defining functions allows you to encapsulate common operations that can be reused throughout your code. Here's an example of how to define a simple function to add two numbers:
+Defining functions allows you to encapsulate common operations that can be \<u>reused throughout your code\</u>. Here's an example of how to define a simple function to add two numbers:
 
 ```python
 def add(a, b):
