@@ -21,7 +21,7 @@
 
 ***
 
-* [Leet Code Intutions](<README (1).md>)
+* [Leet Code Intutions](leet-code-intutions/README.md)
   * [longest-increasing-subsequence](leet-code-intutions/longest-increasing-subsequence.md)
   * [Target-Sum](leet-code-intutions/target-sum.md)
   * [House-Robber](leet-code-intutions/house-robber.md)
