@@ -2,7 +2,7 @@
 
 #### 1. **Defining Functions**
 
-Defining functions allows you to encapsulate common operations that can be \<u>reused throughout your code\</u>. Here's an example of how to define a simple function to add two numbers:
+Defining functions allows you to encapsulate common operations that can be `reused throughout your code`. Here's an example of how to define a simple function to add two numbers:
 
 ```python
 def add(a, b):
@@ -19,7 +19,7 @@ def add(a, b):
 
 #### 2. **Return Values**
 
-Functions often return a processed value that can be used for further operations. For example, here's a function that squares a number:
+Functions often `return a processed value that can be used for further operations`. For example, here's a function that squares a number:
 
 ```python
 def square(x):
