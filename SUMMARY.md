@@ -15,12 +15,12 @@
 ## GenAI + LLMs
 
 * [Page 3](genai-+-llms/page-3.md)
-* [Leet Code Intutions](genai-+-llms/leet-code-intutions/README.md)
-  * [longest-increasing-subsequence](genai-+-llms/leet-code-intutions/longest-increasing-subsequence.md)
-  * [Target-Sum](genai-+-llms/leet-code-intutions/target-sum.md)
-  * [House-Robber](genai-+-llms/leet-code-intutions/house-robber.md)
-  * [House-Robber II](genai-+-llms/leet-code-intutions/house-robber-ii.md)
-  * [Best Time to Buy and Sell Stock with Transaction Fee](genai-+-llms/leet-code-intutions/best-time-to-buy-and-sell-stock-with-transaction-fee.md)
+* [Leet Code Intutions](<README (1).md>)
+  * [longest-increasing-subsequence](longest-increasing-subsequence.md)
+  * [Target-Sum](target-sum.md)
+  * [House-Robber](house-robber.md)
+  * [House-Robber II](problem-summary/house-robber-ii.md)
+  * [Best Time to Buy and Sell Stock with Transaction Fee](problem-summary/best-time-to-buy-and-sell-stock-with-transaction-fee.md)
 
 ## System Design for ML
 
