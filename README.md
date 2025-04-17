@@ -18,6 +18,8 @@ description: Notes for people with unorganized preparations with Organized Inten
 > _"Obstacles cannot crush me. Every obstacle leads to stern resolve. He who is fixed to a star does not change his mind."_\
 > — **Leonardo da Vinci**
 
+***
+
 ### 🎯 Purpose
 
 Welcome to my Scattered Notes — a personal collection of unorganized notes that would help others prepare fast in ample time.
@@ -55,6 +57,8 @@ I am a Machine Learning Engineer. I recently finished my MS in AI and robotics a
 I am a Machine Learning Engineer with a recent MS in AI and Robotics from ASU. I aim to leverage my extensive background in Software Engineering alongside my expertise in AI/ML. Currently, I’m focusing on completing side projects that involve deploying machine learning and deep learning models in cloud environments and developing end-to-end pipelines. My experience with vision and language models is a unique strength I look forward to bringing to my next role.
 {% endtab %}
 {% endtabs %}
+
+***
 
 ### 📎 Final Thought
 

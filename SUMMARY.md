@@ -4,7 +4,20 @@
 
 ## Python
 
-* [Python Notes](python/python-notes.md)
+* [Python Notes](python/python-notes/README.md)
+  * [Core Python](python/python-notes/core-python.md)
+  * [Control Flow](python/python-notes/control-flow.md)
+  * [Comprehensions](python/python-notes/comprehensions.md)
+  * [Functions](python/python-notes/functions.md)
+  * [OOP Concepts](python/python-notes/oop-concepts.md)
+  * [Exception Handling](python/python-notes/exception-handling.md)
+  * [Working with Files](python/python-notes/working-with-files.md)
+  * [Data Structures](python/python-notes/data-structures.md)
+  * [Pythonic Code](python/python-notes/pythonic-code.md)
+  * [Performance Tips](python/python-notes/performance-tips.md)
+  * [Scripting Skills](python/python-notes/scripting-skills.md)
+  * [Concurrency](python/python-notes/concurrency.md)
+  * [Decorators](python/python-notes/decorators.md)
 
 ***
 
