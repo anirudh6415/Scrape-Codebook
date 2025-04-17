@@ -1,6 +1,6 @@
 # Functions
 
-#### 1. **Defining Functions**
+### 1. **Defining Functions**
 
 Defining functions allows you to encapsulate common operations that can be `reused throughout your code`. Here's an example of how to define a simple function to add two numbers:
 
@@ -17,7 +17,7 @@ def add(a, b):
 
 ***
 
-#### 2. **Return Values**
+### 2. **Return Values**
 
 Functions often `return a processed value that can be used for further operations`. For example, here's a function that squares a number:
 
@@ -38,7 +38,7 @@ def square(x):
 
 ***
 
-#### 3. **`*args`**
+### 3. **`*args`**
 
 `*args` allows functions to accept a variable number of positional arguments. For instance:
 
@@ -55,7 +55,7 @@ def foo(*args):
 
 ***
 
-#### 4. **`**kwargs`**
+### 4. **`**kwargs`**
 
 `**kwargs` enables a function to accept any number of keyword arguments. Here's an example:
 
@@ -72,7 +72,7 @@ def foo(**kwargs):
 
 ***
 
-#### 5. **Lambda Functions**
+### 5. **Lambda Functions**
 
 Lambda functions provide a concise way to define short-term, anonymous functions. Here's an example that squares a number:
 
@@ -88,7 +88,7 @@ square = lambda x: x**2
 
 ***
 
-#### 6. **Recursion**
+### 6. **Recursion**
 
 Recursion allows a function to call itself in order to solve problems that can be broken down into smaller sub-problems. For example, the factorial function:
 
@@ -105,7 +105,7 @@ def factorial(n):
 
 ***
 
-#### 7. **Default Arguments**
+### 7. **Default Arguments**
 
 Functions can have default argument values, which can simplify function calls. For example:
 
@@ -122,7 +122,7 @@ def greet(name="John"):
 
 ***
 
-#### 8. **Keyword Arguments**
+### 8. **Keyword Arguments**
 
 Keyword arguments allow you to pass arguments by name, which prevents confusion. For example:
 
@@ -139,7 +139,7 @@ def greet(name, age=25):
 
 ***
 
-#### 9. **Function Annotations (Type Hints)**
+### 9. **Function Annotations (Type Hints)**
 
 Function annotations provide type hints to improve code clarity and static analysis. Here's an example:
 
@@ -156,7 +156,7 @@ def add(a: int, b: int) -> int:
 
 ***
 
-#### 10. **Variable Scope**
+### 10. **Variable Scope**
 
 Understanding the scope of variables in functions is essential for avoiding unintended changes. Here's an example:
 
@@ -176,7 +176,7 @@ func()
 
 ***
 
-#### 11. **Nonlocal Keyword**
+### 11. **Nonlocal Keyword**
 
 The `nonlocal` keyword allows you to modify variables in an outer scope (but not global). Here's an example:
 
@@ -198,7 +198,7 @@ def outer():
 
 ***
 
-#### 12. **Closures**
+### 12. **Closures**
 
 A closure is a function that captures variables from its outer function. Here's an example:
 
@@ -218,7 +218,7 @@ def outer(x):
 
 ***
 
-#### 13. **Higher-Order Functions**
+### 13. **Higher-Order Functions**
 
 Higher-order functions either accept other functions as arguments or return them. Here's an example:
 
@@ -236,7 +236,7 @@ apply_function(lambda x: x * 2, 5)
 
 ***
 
-#### 14. **Function Caching (Memoization)**
+### 14. **Function Caching (Memoization)**
 
 Memoization helps store previously computed results to avoid redundant calculations. Here's an example using `lru_cache`:
 
@@ -256,7 +256,7 @@ def fibonacci(n):
 
 ***
 
-#### 15. **Function Overloading (Simulated)**
+### 15. **Function Overloading (Simulated)**
 
 Python does not support function overloading directly, but you can simulate it by using default arguments. Here's an example:
 
@@ -273,7 +273,7 @@ def greet(name, age=None):
 
 ***
 
-#### 16. **Function vs Method**
+### 16. **Function vs Method**
 
 A method is a function that is bound to an object, whereas a function is independent. Here's an example:
 
@@ -294,7 +294,7 @@ person.greet()
 
 ***
 
-#### 17. **Error Handling in Functions**
+### 17. **Error Handling in Functions**
 
 Using error handling inside functions can help prevent crashes. Here's an example of handling division by zero:
 
