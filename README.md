@@ -6,6 +6,10 @@ description: Notes for people with unorganized preparations with Organized Inten
 
 <figure><img src=".gitbook/assets/drawing.jpg" alt="" width="375"><figcaption><p>"Ink. Intent. Infinite."</p></figcaption></figure>
 
+{% hint style="info" %}
+<sup>Click on the text to view the translation.</sup>&#x20;
+{% endhint %}
+
 > [_"ನಾವು ಬಯಸಿದಂತೆ ಬದುಕುವ ಸ್ವಾತಂತ್ರ್ಯ ಯಾವತ್ತೂ ಭಯಾನಕ ಹೋರಾಟದ ಫಲವೇ ಹೊರತು ಸುಲಭಕ್ಕೆ ಸಿಗುವುದಿಲ್ಲ."_](#user-content-fn-1)[^1]> \
 > — **K. Poornachandra Tejaswi**
 >
@@ -17,6 +21,8 @@ description: Notes for people with unorganized preparations with Organized Inten
 >
 > _"Obstacles cannot crush me. Every obstacle leads to stern resolve. He who is fixed to a star does not change his mind."_\
 > — **Leonardo da Vinci**
+
+
 
 ***
 
@@ -70,4 +76,4 @@ If you stumble on this, I hope it helps you too. If not, it’ll help me one day
 
 [^1]: Translation : The freedom to live as we wish is always a terrible fight since we will not get it easily
 
-[^2]: Criticisms die. Works remain.
+[^2]: Translation: Criticisms die. Works remain.
