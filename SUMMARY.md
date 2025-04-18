@@ -9,7 +9,7 @@
   * [Control Flow](python/python-notes/control-flow.md)
   * [Comprehensions](python/python-notes/comprehensions.md)
   * [Functions](python/python-notes/functions.md)
-  * [OOP Concepts](python/python-notes/oop-concepts.md)
+  * [OOPs Concepts](python/python-notes/oops-concepts.md)
   * [Exception Handling](python/python-notes/exception-handling.md)
   * [Working with Files](python/python-notes/working-with-files.md)
   * [Data Structures](python/python-notes/data-structures.md)
