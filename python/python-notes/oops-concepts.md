@@ -205,7 +205,7 @@ print(boat.type_of_vehicle)  # Output: Boat
 
 ***
 
-#### **`@staticmethod`**
+### **`@staticmethod`**
 
 Defines a method that doesn't access class or instance data.
 
@@ -227,7 +227,7 @@ print(result)  # Output: 8
 
 ***
 
-#### **`@classmethod`**
+### **`@classmethod`**
 
 Accesses class itself (not instance).
 
@@ -249,7 +249,7 @@ print(Person.info())  # Output: Homo sapiens
 
 ***
 
-#### **`super()`**
+### **`super()`**
 
 Calls a method from the parent class.
 
@@ -275,7 +275,7 @@ child.greet()  # Output: Hello from Parent \n Hello from Child
 
 ***
 
-#### **Method Resolution Order (MRO)**
+### **Method Resolution Order (MRO)**
 
 Order in which Python looks for methods in multiple inheritance.
 
@@ -297,7 +297,7 @@ print(D.__mro__)
 
 ***
 
-#### **Dunder (Magic) Methods**
+### **Dunder (Magic) Methods**
 
 Special methods like `__str__`, `__repr__`, `__eq__`, etc.
 
@@ -322,7 +322,7 @@ print(book1)
 
 ***
 
-#### **Composition vs Inheritance**
+### **Composition vs Inheritance**
 
 Composition uses object relationships; inheritance uses class hierarchies.
 
@@ -352,7 +352,7 @@ car.start()
 
 ***
 
-#### **Operator Overloading**
+### **Operator Overloading**
 
 Customizing behavior of operators.
 
