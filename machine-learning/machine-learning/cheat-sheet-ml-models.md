@@ -1,12 +1,16 @@
 # Cheat-sheet-ML-models
 
-#### Linear Models <a href="#linear-models-inanu" id="linear-models-inanu"></a>
+### Refreshers <a href="#linear-models-inanu" id="linear-models-inanu"></a>
+
+{% embed url="https://stanford.edu/~shervine/teaching/cs-229/" %}
+
+### Linear Models <a href="#linear-models-inanu" id="linear-models-inanu"></a>
 
 In a nutshell, linear models create a best-fit line to predict unseen data. Linear models imply that outputs are a linear combination of features. In this section, we'll specify commonly used linear models in machine learning, their advantages, and disadvantages.
 
 <table data-header-hidden><thead><tr><th width="127.3193359375"></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Algorithm</strong></td><td><strong>Description</strong></td><td><strong>Applications</strong></td><td><strong>Advantages</strong></td><td><strong>Disadvantages</strong></td></tr><tr><td><strong>Linear Regression</strong></td><td>A simple algorithm that models a linear relationship between inputs and a continuous numerical output variable</td><td><ol><li>Stock Price Prediction</li><li>Predicting housing prices</li><li>Predicting customer lifetime value</li></ol></td><td><ol><li>Explainable method</li><li>Interpretable results by its output coefficient</li><li>Faster to train than other machine learning models</li></ol></td><td><ol><li>Assumes linearity between inputs and output</li><li>Sensitive to outliers</li><li>Can underfit with small, high-dimensional data </li></ol></td></tr><tr><td><strong>Logistic Regression</strong></td><td>A simple algorithm that models a linear relationship between inputs and a categorical output (1 or 0)</td><td><ol><li>Predicting credit risk score</li><li>Customer churn prediction</li></ol></td><td><ol><li>Interpretable and explainable</li><li>Less prone to overfitting when using regularization</li><li>Applicable for multi-class predictions</li></ol></td><td><ol><li>Assumes linearity between inputs and outputs</li><li>Can overfit with small, high-dimensional data </li></ol></td></tr><tr><td><strong>Ridge Regression</strong></td><td>Part of the regression family — it penalizes features that have low predictive outcomes by shrinking their coefficients closer to zero. Can be used for classification or regression</td><td><ol><li>Predictive maintenance for automobiles</li><li>Sales revenue prediction</li></ol></td><td><ol><li>Less prone to overfitting</li><li>Best suited where data suffer from multicollinearity</li><li>Explainable &#x26; interpretable</li></ol></td><td><ol><li>All the predictors are kept in the final model</li><li>Doesn't perform feature selection</li></ol></td></tr><tr><td><strong>Lasso Regression</strong></td><td>Part of the regression family — it penalizes features that have low predictive outcomes by shrinking their coefficients to zero. Can be used for classification or regression</td><td><ol><li>Predicting housing prices</li><li>Predicting clinical outcomes based on health data</li></ol></td><td><ol><li>Less prone to overfitting</li><li>Can handle high-dimensional data</li><li>No need for feature selection</li></ol></td><td><ol><li>Can lead to poor interpretability as it can keep highly correlated variables</li></ol></td></tr></tbody></table>
 
-#### Tree-based models <a href="#tree-based-models-inanu" id="tree-based-models-inanu"></a>
+### Tree-based models <a href="#tree-based-models-inanu" id="tree-based-models-inanu"></a>
 
 In a nutshell, tree-based models use a series of "if-then" rules to predict from decision trees. In this section, we'll specify commonly used linear models in machine learning, their advantages, and disadvantages.
 
