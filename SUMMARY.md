@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Scattered Notes](README.md)
+* [Behavioral Questions](behavioral-questions.md)
 
 ## Python
 
@@ -37,19 +38,19 @@
 
 ## Deep Learning
 
-* [Deep Learning and Vision](deep-learning/deep-learning-and-vision.md)
+* [Deep Learning and Vision](deep-learning/page-7.md)
 
 ## GenAI + LLMs
 
-* [GenAI + LLM's](genai-+-llms/genai-+-llms.md)
+* [GenAI + LLM's](genai-+-llms/page-3.md)
 
 ## System Design for ML
 
-* [System Design ](system-design-for-ml/system-design.md)
+* [System Design ](system-design-for-ml/page-4.md)
 
 ## SQL & Data Engineering
 
-* [SQL](sql-and-data-engineering/sql.md)
+* [SQL](sql-and-data-engineering/page-5.md)
 
 ***
 
@@ -57,7 +58,7 @@
 
 ## GCP, AWS & Cloud ML
 
-* [GCP](gcp-aws-and-cloud-ml/gcp.md)
+* [GCP](gcp-aws-and-cloud-ml/page-6.md)
 * [AWS](gcp-aws-and-cloud-ml/aws.md)
 
 ***

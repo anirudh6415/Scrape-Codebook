@@ -4,6 +4,8 @@
 
 {% embed url="https://stanford.edu/~shervine/teaching/cs-229/" %}
 
+{% embed url="https://mlu-explain.github.io/" %}
+
 ### Linear Models <a href="#linear-models-inanu" id="linear-models-inanu"></a>
 
 In a nutshell, linear models create a best-fit line to predict unseen data. Linear models imply that outputs are a linear combination of features. In this section, we'll specify commonly used linear models in machine learning, their advantages, and disadvantages.
