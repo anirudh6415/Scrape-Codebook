@@ -19,6 +19,7 @@
   * [Concurrency](python/python-notes/concurrency.md)
   * [Decorators](python/python-notes/decorators.md)
   * [Imp-Standard Libraries](python/python-notes/imp-standard-libraries.md)
+  * [Iterables vs. Iterators vs. Generators](python/python-notes/iterables-vs.-iterators-vs.-generators.md)
 
 ***
 
