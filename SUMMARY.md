@@ -37,20 +37,35 @@
 
 ## Deep Learning
 
-* [Page 7](deep-learning/page-7.md)
+* [Deep Learning and Vision](deep-learning/deep-learning-and-vision.md)
 
 ## GenAI + LLMs
 
-* [Page 3](genai-+-llms/page-3.md)
+* [GenAI + LLM's](genai-+-llms/genai-+-llms.md)
 
 ## System Design for ML
 
-* [Page 4](system-design-for-ml/page-4.md)
+* [System Design ](system-design-for-ml/system-design.md)
 
 ## SQL & Data Engineering
 
-* [Page 5](sql-and-data-engineering/page-5.md)
+* [SQL](sql-and-data-engineering/sql.md)
+
+***
+
+* [Data Engineering](data-engineering.md)
 
 ## GCP, AWS & Cloud ML
 
-* [Page 6](gcp-aws-and-cloud-ml/page-6.md)
+* [GCP](gcp-aws-and-cloud-ml/gcp.md)
+* [AWS](gcp-aws-and-cloud-ml/aws.md)
+
+***
+
+* [Docker](docker.md)
+* [Kubernetes](kubernetes.md)
+* [Jenkins](jenkins.md)
+
+## API&#x20;
+
+* [API design](api/api-design.md)
