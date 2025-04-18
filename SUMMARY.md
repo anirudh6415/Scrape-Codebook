@@ -32,7 +32,8 @@
 
 ## Machine Learning
 
-* [Page 2](machine-learning/page-2.md)
+* [Machine Learning](machine-learning/machine-learning/README.md)
+  * [Cheat-sheet-ML-models](machine-learning/machine-learning/cheat-sheet-ml-models.md)
 
 ## Deep Learning
 
