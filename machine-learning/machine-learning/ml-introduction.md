@@ -10,7 +10,7 @@
 
 ### ML vs AI vs Deep Learning vs Data Science&#x20;
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="365"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="365"><figcaption></figcaption></figure>
 
 ***
 
@@ -22,5 +22,5 @@
 
 ### ML Life Cycle
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p><a href="https://gretel.ai/blog/synthetic-data-and-the-data-centric-machine-learning-life-cycle">source</a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p><a href="https://gretel.ai/blog/synthetic-data-and-the-data-centric-machine-learning-life-cycle">source</a></p></figcaption></figure>
 
