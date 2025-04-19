@@ -12,7 +12,9 @@ Gilbert Strang lectures on Linear Algebra (MIT)
 Cheat Sheet
 {% endembed %}
 
-Calculus
+{% embed url="https://stanford.edu/~shervine/teaching/cs-229/refresher-algebra-calculus" %}
+
+### Probability and Calculus
 
 {% embed url="https://ocw.mit.edu/courses/18-s096-matrix-calculus-for-machine-learning-and-beyond-january-iap-2023/video_galleries/lecture-videos/" %}
 Video lecture
@@ -22,7 +24,9 @@ Video lecture
 Cheat Sheet
 {% endembed %}
 
-### Probability
+{% embed url="https://stanford.edu/~shervine/teaching/cs-229/refresher-probabilities-statistics" %}
+
+
 
 {% embed url="https://static1.squarespace.com/static/54bf3241e4b0f0d81bf7ff36/t/55e9494fe4b011aed10e48e5/1441352015658/probability_cheatsheet.pdf" %}
 
