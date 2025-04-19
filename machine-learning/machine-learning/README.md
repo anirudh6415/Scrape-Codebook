@@ -9,6 +9,8 @@
 {% embed url="https://stanford.edu/~shervine/teaching/cs-229/" %}
 
 {% embed url="https://www.deep-ml.com/" %}
+practice math and algorithms (similar to leet code)
+{% endembed %}
 
 {% embed url="https://dcai.csail.mit.edu/resources" %}
 
