@@ -35,7 +35,7 @@
 
 * [Machine Learning](machine-learning/machine-learning/README.md)
   * [ML Introduction](machine-learning/machine-learning/ml-introduction.md)
-  * [Basic Math for ML](machine-learning/machine-learning/basic-math-for-ml.md)
+  * [Math for ML](machine-learning/machine-learning/math-for-ml.md)
   * [Supervised Learning](machine-learning/machine-learning/supervised-learning.md)
   * [Unsupervised Learning](machine-learning/machine-learning/unsupervised-learning.md)
   * [Model Evaluation](machine-learning/machine-learning/model-evaluation.md)
