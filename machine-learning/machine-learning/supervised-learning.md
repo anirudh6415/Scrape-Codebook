@@ -87,3 +87,63 @@ Further Reading: [https://mlu-explain.github.io/linear-regression/](https://mlu-
 >
 > Also extended to: predict multiple classes/labels ([OneVsRestClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.multiclass.OneVsRestClassifier.html)) . [<sup><sub>**Mulit class classification**<sub></sup>](https://en.wikipedia.org/wiki/Multiclass_classification)<sup><sub>**,**<sub></sup> [<sup><sub>**Mulit label classification**<sub></sup>](https://en.wikipedia.org/wiki/Multi-label_classification)
 
+#### Assumptions / Conditions
+
+| Assumption                 | Description                                         |
+| -------------------------- | --------------------------------------------------- |
+| Binary/Multinomial Outcome | The dependent variable is categorical               |
+| Linearity of Logit         | Linear relationship between predictors and log-odds |
+| No Multicollinearity       | Features should not be highly correlated            |
+| Large Sample Size          | Especially for rare outcomes                        |
+| Independent Observations   | Each observation is assumed to be independent       |
+
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption><p><a href="https://medium.com/data-science/logistic-regression-explained-in-7-minutes-f648bf44d53e">source</a></p></figcaption></figure>
+
+```python
+from sklearn.linear_model import LogisticRegression
+from sklearn.datasets import make_classification
+
+# Create dummy data
+X, y = make_classification(n_samples=100, n_features=2, n_classes=2, random_state=42)
+
+# Fit the model
+model = LogisticRegression()
+model.fit(X, y)
+y_pred = model.predict(X)
+
+```
+
+#### Loss Functions
+
+* Binary Cross Entropy (Log Loss)
+* Categorical Cross Entropy (for multi-class)
+
+Evaluation Metrics
+
+* Accuracy
+* Precision, Recall, F1 Score
+* ROC-AUC
+* Log Loss
+
+Optimization Techniques
+
+* Gradient Descent
+* L2 Regularization (Ridge-like)
+* L1 Regularization (Lasso-like)
+
+#### Common Issues
+
+| Issue             | Description                                 |
+| ----------------- | ------------------------------------------- |
+| Overfitting       | Happens with high dimensional feature space |
+| Non-linearity     | Poor fit if decision boundary isn’t linear  |
+| Imbalanced Data   | Skews performance, needs resampling         |
+| Multicollinearity | Makes coefficients unstable                 |
+
+Further Reading: [https://mlu-explain.github.io/logistic-regression/](https://mlu-explain.github.io/logistic-regression/)
+
+***
+
+### Decision Tree
+
+>
