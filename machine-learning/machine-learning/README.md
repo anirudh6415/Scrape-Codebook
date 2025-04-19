@@ -1,10 +1,16 @@
 # Machine Learning
 
-References:
+### References:
 
 {% embed url="https://mlu-explain.github.io/" %}
 
+{% embed url="https://www.statlearning.com/" %}
+
 {% embed url="https://stanford.edu/~shervine/teaching/cs-229/" %}
+
+{% embed url="https://www.deep-ml.com/" %}
+
+{% embed url="https://dcai.csail.mit.edu/resources" %}
 
 ### **📌 1. Key ML Topics to Cover**
 
