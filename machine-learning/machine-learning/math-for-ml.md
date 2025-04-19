@@ -1,6 +1,6 @@
 # Math for ML
 
-{% @github-files/github-code-block %}
+### [BackgroundMathematics.ipynb](https://github.com/udlbook/udlbook/blob/main/Notebooks/Chap01/1_1_BackgroundMathematics.ipynb)
 
 ### Linear Algebra&#x20;
 
@@ -29,5 +29,3 @@ Cheat Sheet
 
 
 {% embed url="https://static1.squarespace.com/static/54bf3241e4b0f0d81bf7ff36/t/55e9494fe4b011aed10e48e5/1441352015658/probability_cheatsheet.pdf" %}
-
-{% @github-files/github-code-block url="https://github.com/shervinea/stanford-cme-106-probability-and-statistics/blob/master/cheatsheet-statistics.pdf" %}
