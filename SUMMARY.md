@@ -34,6 +34,16 @@
 ## Machine Learning
 
 * [Machine Learning](machine-learning/machine-learning/README.md)
+  * [ML Introduction](machine-learning/machine-learning/ml-introduction.md)
+  * [Basic Math for ML](machine-learning/machine-learning/basic-math-for-ml.md)
+  * [Supervised Learning](machine-learning/machine-learning/supervised-learning.md)
+  * [Unsupervised Learning](machine-learning/machine-learning/unsupervised-learning.md)
+  * [Model Evaluation](machine-learning/machine-learning/model-evaluation.md)
+  * [Feature Engineering](machine-learning/machine-learning/feature-engineering.md)
+  * [Model Optimization](machine-learning/machine-learning/model-optimization.md)
+  * [Training Techniques](machine-learning/machine-learning/training-techniques.md)
+  * [Explainability](machine-learning/machine-learning/explainability.md)
+  * [Real-world Scenarios (Suggestions)](machine-learning/machine-learning/real-world-scenarios-suggestions.md)
   * [Cheat-sheet-ML-models](machine-learning/machine-learning/cheat-sheet-ml-models.md)
 
 ## Deep Learning
