@@ -221,11 +221,13 @@ Further Reading: [https://mlu-explain.github.io/decision-tree/](https://mlu-expl
 
 ### Ensemble Learning/Methods
 
-> Idea of combining multiple models ---> leads to better performance.
+> **Idea of combining multiple models ---> leads to better performance.**
 >
 > By aggregating predictions of different models, we can reduce variance and/or bais and imporve genralization, making it more performance effiecent.&#x20;
 >
 > Types: Bagging , Boosting, Stacking
 
 <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+### Random Forest&#x20;
 
