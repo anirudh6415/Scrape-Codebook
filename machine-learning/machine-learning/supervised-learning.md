@@ -146,4 +146,80 @@ Further Reading: [https://mlu-explain.github.io/logistic-regression/](https://ml
 
 ### Decision Tree
 
+> A decision tree is  used for both _classification and regression_ tasks.&#x20;
 >
+> It splits data into subsets on the value of input features and then forms a tree structure to make decision.&#x20;
+>
+> Each node represents a decision.
+>
+> Each branch represents an outcome of that decision.
+>
+> Each leaf node represents a finial decision i.e. classification.
+>
+> Structure: Root Node -> Branches -> leaf node -> branches->.......................
+
+#### Assumptions / Conditions
+
+| Assumption               | Description                                               |
+| ------------------------ | --------------------------------------------------------- |
+| Features are Independent | Each feature is considered separately for splitting.      |
+| Sufficient Data          | Pruning or constraints are required to avoid overfitting. |
+| Data is Clean            | Noisy data may lead to overly complex trees.              |
+| Recursive Binary Splits  | Splits are made recursively, usually into two branches.   |
+
+Key concepts: [<sub>refer sklearn</sub>](https://scikit-learn.org/stable/modules/tree.html)
+
+<table><thead><tr><th width="155.7176513671875">Concept</th><th width="179.81011962890625">Description	</th><th width="351.31591796875">How It Works / Why It Matters</th></tr></thead><tbody><tr><td>Entropy</td><td>Measures disorder/uncertainty in the dataset. </td><td>High entropy = more mixed classes. <br>We want to reduce entropy with every split to get purer subsets.</td></tr><tr><td>Information Gain</td><td>How much entropy decreases after splitting.</td><td>Used to decide which feature to split on; the feature that reduces uncertainty the most is chosen.</td></tr><tr><td>Gini Impurity</td><td>Measures the chance of misclassifying a sample.</td><td>Lower Gini = purer split. Fast to compute and works well in practice.</td></tr><tr><td>Gain ratio</td><td>Adjusts Information Gain by penalizing high-cardinality features.</td><td>Prevents bias towards features with many unique values.</td></tr><tr><td>Chi-Square</td><td>Statistical test to see if split is meaningful.</td><td>Bigger chi-square value = more significant split.</td></tr><tr><td>Max depth</td><td>Maximum depth of the tree.</td><td>Shallow trees generalize better, avoid overfitting.</td></tr><tr><td>Min sample split</td><td>Minimum samples required to split a node.</td><td>Prevents splits on small, noisy sets.</td></tr><tr><td>Min sample leaf</td><td>Minimum samples required to be at a leaf node.</td><td>Smooths predictions and reduces variance.</td></tr><tr><td>Max Features</td><td>Number of features to consider when looking for the best split.</td><td>Adds randomness, helps in ensemble methods like Random Forest.</td></tr><tr><td>Pruning (Post or Pre)</td><td>Removes unnecessary branches.</td><td>Reduces model complexity and improves generalization by trimming low-information parts of the tree.</td></tr><tr><td>Overfitting</td><td>When the tree memorizes training data.</td><td>Deep trees with few constraints tend to overfit. Fix using pruning or regularization.</td></tr><tr><td>Underfitting</td><td>When the tree is too simple to learn from the data.</td><td>Usually caused by too shallow trees or too strict constraints.</td></tr></tbody></table>
+
+<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption><p><a href="https://www.datacamp.com/tutorial/decision-tree-classification-python">source</a></p></figcaption></figure>
+
+```python
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+
+# Load dataset
+X, y = load_iris(return_X_y=True)
+
+# Fit the model
+model = DecisionTreeClassifier(max_depth=3)
+model.fit(X, y)
+
+# Visualize
+plt.figure(figsize=(12, 8))
+plot_tree(model, filled=True, feature_names=["Sepal Length", "Sepal Width", "Petal Length", "Petal Width"])
+plt.show()
+```
+
+#### Loss Functions
+
+* Gini Impurity
+* Entropy (for classification)
+* MSE / MAE (for regression)
+
+#### Evaluation Metrics
+
+| Classification        | Regression |
+| --------------------- | ---------- |
+| Accuracy              | R² Score   |
+| Precision, Recall, F1 | RMSE, MAE  |
+| Confusion Matrix      | MSE        |
+
+#### Optimization Techniques
+
+* **Pruning** (pre-pruning, post-pruning)
+* **Max Depth, Min Samples Split/Leaf**
+* **Feature Selection Criteria**
+
+#### Common Issues
+
+| Issue                                  | Description                                               |
+| -------------------------------------- | --------------------------------------------------------- |
+| Overfitting                            | Deep trees may fit noise in training data                 |
+| Instability                            | Small changes in data can result in a very different tree |
+| Bias towards features with more levels | May prefer variables with many categories                 |
+| Low Generalization                     | Can perform poorly on unseen data without pruning         |
+
+Further Reading: [https://mlu-explain.github.io/decision-tree/](https://mlu-explain.github.io/decision-tree/)
+
+***
