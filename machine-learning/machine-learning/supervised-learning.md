@@ -229,5 +229,108 @@ Further Reading: [https://mlu-explain.github.io/decision-tree/](https://mlu-expl
 
 <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
+### When to use Bagging vs Boosting
+
+Bagging: When you have a high variance model that is overfitting on training data.&#x20;
+
+Boosting: When you have a model with high bias and/or high variance, you need to improve.
+
 ### Random Forest&#x20;
 
+> Multiple decision trees are combined to make predictions are Random forest  (Bagging- Bootstrap Aggregating)
+>
+> Each tree is trained on a **random subset of the data (with replacement)**.
+>
+> At each split, a **random subset of features** is selected.
+>
+> For classification, the final output is the **majority vote**.
+>
+> For regression, the final output is the **average prediction**.
+
+#### Assumptions / Conditions
+
+| Assumption / Condition      | Description                                              |
+| --------------------------- | -------------------------------------------------------- |
+| Independence of features    | Features should be informative and not highly correlated |
+| Sufficient data             | More data = better diversity in trees                    |
+| No need for feature scaling | Random Forest is scale-invariant                         |
+
+#### Cost Function / Objective
+
+Random Forest has no **global cost function** like MSE or cross-entropy. Each tree is built to **minimize impurity** (Gini or Entropy), and the final prediction is based on **ensemble voting or averaging**.
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Load dataset
+X, y = load_iris(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Train the model
+model = RandomForestClassifier(n_estimators=100, max_depth=3, random_state=42)
+model.fit(X_train, y_train)
+
+# Predict and evaluate
+y_pred = model.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+```
+
+#### Common Issues
+
+| Issue                       | Description                                              |
+| --------------------------- | -------------------------------------------------------- |
+| Overfitting                 | With too many deep trees on noisy data                   |
+| Interpretability            | Hard to interpret full forest compared to a single tree  |
+| Bias in Imbalanced Datasets | Tends to favor majority class                            |
+| Large Size                  | Can be slow or memory intensive with too many estimators |
+
+#### Further Reading: [MLU Explain - Random Forest](https://mlu-explain.github.io/random-forest/)
+
+### XGBoost (Extreme Gradient Boosting)
+
+> **XGBoost** is a fast, regularized, and scalable implementation of Gradient Boosted Decision Trees (GBDT).\
+> It builds trees **sequentially**, where each tree tries to correct the errors made by the previous ones.
+
+#### Assumptions / Conditions
+
+| Assumption / Condition      | Description                                      |
+| --------------------------- | ------------------------------------------------ |
+| Additive Model              | New trees correct residuals of previous ensemble |
+| No need for feature scaling | Works well with raw or normalized data           |
+| Clean data preferred        | Sensitive to outliers and noise                  |
+| Independent features help   | Redundant features may affect performance        |
+
+```python
+import xgboost as xgb
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Load dataset
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Train the model
+model = xgb.XGBClassifier(use_label_encoder=False, eval_metric='logloss', max_depth=3, n_estimators=100)
+model.fit(X_train, y_train)
+
+# Predict and evaluate
+y_pred = model.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+```
+
+#### Common Issues
+
+| Issue                     | Description                                        |
+| ------------------------- | -------------------------------------------------- |
+| Overfitting               | Happens with too many trees or no regularization   |
+| High memory usage         | Can be computationally expensive on large datasets |
+| Sensitive to noisy labels | Can overfit if data is not clean                   |
+| Harder to interpret       | Compared to single decision trees                  |
+
+#### Further Reading: [Official XGBoost Docs](https://xgboost.readthedocs.io/)
