@@ -334,3 +334,51 @@ print("Accuracy:", accuracy_score(y_test, y_pred))
 | Harder to interpret       | Compared to single decision trees                  |
 
 #### Further Reading: [Official XGBoost Docs](https://xgboost.readthedocs.io/)
+
+### K-Nearest Neighbour
+
+> kNN is a non-parmetric model becuase it makes assumptions that similar data points are  locted close to each other in feature space.&#x20;
+>
+> New labels or values of new data points would be inferred based on its closest neighbors.
+>
+> It is based on  Euclidean, Manhattan, Minkowski or hamming distance
+
+| Assumption / Condition        | Description                                                                |
+| ----------------------------- | -------------------------------------------------------------------------- |
+| Instance-based learning       | No explicit training; relies on storing and comparing instances.           |
+| Local similarity assumption   | Assumes that similar points exist in close proximity in the feature space. |
+| Sensitivity to feature scale  | Distance-based metrics require features to be on similar scales.           |
+| Impact of irrelevant features | Irrelevant or noisy features can distort distance calculations.            |
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# Load dataset
+X, y = load_iris(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Feature scaling
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Train kNN model
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
+
+# Predict and evaluate
+y_pred = knn.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+```
+
+| Common Issue                   | Description                                                                |
+| ------------------------------ | -------------------------------------------------------------------------- |
+| Poor scalability               | Slow prediction with large datasets (must compare to all training points). |
+| Curse of dimensionality        | High-dimensional data can weaken the meaning of "closeness".               |
+| Requires feature normalization | Performance highly depends on the proper scaling of features.              |
+

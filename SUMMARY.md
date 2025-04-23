@@ -45,6 +45,7 @@
   * [Explainability](machine-learning/machine-learning/explainability.md)
   * [Real-world Scenarios (Suggestions)](machine-learning/machine-learning/real-world-scenarios-suggestions.md)
   * [Cheat-sheet-ML-models](machine-learning/machine-learning/cheat-sheet-ml-models.md)
+  * [How to I build it from scratch ?](machine-learning/machine-learning/how-to-i-build-it-from-scratch.md)
 
 ## Deep Learning
 
