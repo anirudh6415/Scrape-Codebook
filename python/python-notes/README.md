@@ -2,7 +2,7 @@
 
 References:
 
-{% embed url="https://realpython.com/" fullWidth="true" %}
+{% embed url="https://realpython.com/" fullWidth="false" %}
 
 {% embed url="https://awesome-python.com/" %}
 
