@@ -11,6 +11,8 @@
 > 3. Recalculate centroids based on assigned points.
 > 4. Repeat Steps 2–3 until convergence (centroids don’t change).
 
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
 **Assumptions / Conditions:**
 
 | Assumption         | Description                                        |
@@ -52,6 +54,10 @@ plt.show()
 > 2. Compute covariance matrix
 > 3. Compute eigenvectors/eigenvalues
 > 4. Select top-k eigenvectors → principal components
+
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 **Assumptions / Conditions:**
 
