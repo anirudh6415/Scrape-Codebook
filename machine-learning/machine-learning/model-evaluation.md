@@ -61,6 +61,145 @@
 | Reconstruction Err | Used in autoencoders                      | `mean((x - x_hat)^2)`                  | High = potential anomaly                   | Identify anomalies by high reconstruction error |
 | Isolation Depth    | Avg. tree path length in Isolation Forest | `isolation_forest.decision_function()` | Shorter = more likely anomaly              | Lower score = more isolated (anomalous)         |
 
+### Cross-Validation in Model Evaluation
+
+**What:** Cross-validation is a statistical method used to estimate the performance of a machine learning model on an independent dataset. It helps ensure that the model generalizes well to unseen data and doesn't simply overfit the training set.
+
+**Why:**
+
+1. **Overfitting Prevention:** Cross-validation helps reduce the risk of overfitting by testing the model on multiple different subsets of the data.
+2. **Reliable Performance Estimate:** Provides a more reliable estimate of model performance compared to a single train-test split.
+3. **Better Use of Data:** Utilizes all available data by training the model on different subsets and testing on others.
+
+**How:** The idea is to split the data into multiple subsets (folds), train the model on a subset, and validate it on another. This process is repeated several times to understand how the model will perform on unseen data.
+
+**Common Types of Cross-Validation:**
+
+1.  **K-Fold Cross-Validation:**
+
+    * The data is split into **K** subsets or folds. The model is trained on K-1 folds and validated on the remaining fold. This process is repeated K times with a different fold as the test set.
+    * **Advantages:** Works well for most cases; provides a good estimate of the model’s performance.
+    * **Disadvantages:** Computationally expensive when K is large, especially for large datasets.
+
+    **Example:**
+
+    * Split the data into 5 folds.
+    * Train on folds 1, 2, 3, and 4, validate on fold 5.
+    * Repeat the process until all folds have been used for validation.
+2. **Stratified K-Fold Cross-Validation:**
+   * A variation of K-fold cross-validation where each fold has the same proportion of each class label (ideal for imbalanced datasets).
+3. **Leave-One-Out Cross-Validation (LOOCV):**
+   * A special case of K-fold where K equals the number of data points. For each iteration, the model is trained on all data points except one, which is used as the test set.
+   * **Advantages:** It uses all data for training but can be computationally expensive for large datasets.
+4. **Leave-P-Out Cross-Validation:**
+   * A generalized version of LOOCV where **P** observations are used as the test set, and the rest are used for training.
+5. **Time Series Cross-Validation:**
+   * Used for time series data where the data is split based on temporal order. Future data cannot be used to predict past data, so the splits are made to respect this.
+
+***
+
+#### Code Examples
+
+**1. K-Fold Cross-Validation (Standard)**
+
+```python
+pythonCopy codefrom sklearn.model_selection import KFold, cross_val_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+
+# Load data
+data = load_iris()
+X, y = data.data, data.target
+
+# Initialize model
+model = RandomForestClassifier(n_estimators=100)
+
+# KFold Cross-validation (5 folds)
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+
+# Cross-validation scores
+cv_scores = cross_val_score(model, X, y, cv=kf)
+print(f'Cross-validation scores: {cv_scores}')
+print(f'Mean CV score: {cv_scores.mean()}')
+```
+
+**2. Stratified K-Fold Cross-Validation (for Imbalanced Classes)**
+
+```python
+pythonCopy codefrom sklearn.model_selection import StratifiedKFold
+from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestClassifier
+
+# Load data
+data = load_iris()
+X, y = data.data, data.target
+
+# Initialize model
+model = RandomForestClassifier(n_estimators=100)
+
+# Stratified KFold (5 folds)
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+# Cross-validation scores
+cv_scores = cross_val_score(model, X, y, cv=skf)
+print(f'Stratified CV scores: {cv_scores}')
+print(f'Mean CV score: {cv_scores.mean()}')
+```
+
+**3. Leave-One-Out Cross-Validation (LOOCV)**
+
+```python
+pythonCopy codefrom sklearn.model_selection import LeaveOneOut
+from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestClassifier
+
+# Load data
+data = load_iris()
+X, y = data.data, data.target
+
+# Initialize model
+model = RandomForestClassifier(n_estimators=100)
+
+# Leave-One-Out Cross-Validation
+loo = LeaveOneOut()
+
+# Cross-validation scores
+cv_scores = cross_val_score(model, X, y, cv=loo)
+print(f'LOO CV scores: {cv_scores}')
+print(f'Mean LOO CV score: {cv_scores.mean()}')
+```
+
+**4. Time Series Cross-Validation**
+
+```python
+pythonCopy codefrom sklearn.model_selection import TimeSeriesSplit
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+
+# Load data
+data = load_iris()
+X, y = data.data, data.target
+
+# Initialize model
+model = RandomForestClassifier(n_estimators=100)
+
+# TimeSeries Split (5 folds)
+tscv = TimeSeriesSplit(n_splits=5)
+
+# Cross-validation scores
+cv_scores = cross_val_score(model, X, y, cv=tscv)
+print(f'TimeSeries CV scores: {cv_scores}')
+print(f'Mean TimeSeries CV score: {cv_scores.mean()}')
+```
+
+***
+
+#### So What:
+
+* **Validation across Multiple Folds:** Cross-validation provides a more reliable estimate of the model's ability to generalize, as each data point gets tested at least once.
+* **Reduces Overfitting:** Training and testing on different subsets of the data ensures that the model doesn't just memorize the training data.
+* **Hyperparameter Tuning:** Cross-validation is commonly used in conjunction with hyperparameter tuning to find the optimal configuration of a model.
+
 ### Further Cheat Sheet
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
