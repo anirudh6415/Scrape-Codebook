@@ -1,6 +1,6 @@
 # Model Evaluation
 
-#### 1. Classification
+### 1. Classification
 
 | Metric    | What (Description)                        | How (Formula or Code)                            | Why (Rationale)                                 | So What (Interpretation)                         |
 | --------- | ----------------------------------------- | ------------------------------------------------ | ----------------------------------------------- | ------------------------------------------------ |
@@ -14,7 +14,7 @@
 
 ***
 
-#### 2. Regression
+### 2. Regression
 
 | Metric      | What (Description)                  | How (Formula or Code)           | Why (Rationale)                        | So What (Interpretation)                   |
 | ----------- | ----------------------------------- | ------------------------------- | -------------------------------------- | ------------------------------------------ |
@@ -26,7 +26,7 @@
 
 ***
 
-#### 3. Clustering
+### 3. Clustering
 
 | Metric           | What (Description)                         | How (Formula or Code)                            | Why (Rationale)                         | So What (Interpretation)         |
 | ---------------- | ------------------------------------------ | ------------------------------------------------ | --------------------------------------- | -------------------------------- |
@@ -39,7 +39,7 @@
 
 ***
 
-#### 4. Dimensionality Reduction
+### 4. Dimensionality Reduction
 
 | Metric             | What (Description)                        | How (Formula or Code)                | Why (Rationale)                                  | So What (Interpretation)                         |
 | ------------------ | ----------------------------------------- | ------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
@@ -50,7 +50,7 @@
 
 ***
 
-#### 5. Anomaly Detection
+### 5. Anomaly Detection
 
 | Metric             | What (Description)                        | How (Formula or Code)                  | Why (Rationale)                            | So What (Interpretation)                        |
 | ------------------ | ----------------------------------------- | -------------------------------------- | ------------------------------------------ | ----------------------------------------------- |
@@ -60,6 +60,8 @@
 | PR-AUC             | Area under PR curve                       | `average_precision_score()`            | Better for skewed data                     | High = better precision-recall trade-off        |
 | Reconstruction Err | Used in autoencoders                      | `mean((x - x_hat)^2)`                  | High = potential anomaly                   | Identify anomalies by high reconstruction error |
 | Isolation Depth    | Avg. tree path length in Isolation Forest | `isolation_forest.decision_function()` | Shorter = more likely anomaly              | Lower score = more isolated (anomalous)         |
+
+### Further Cheat Sheet
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
