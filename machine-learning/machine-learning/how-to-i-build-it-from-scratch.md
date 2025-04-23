@@ -1,7 +1,5 @@
 # How to I build it from scratch ?
 
-###
-
 ### KNN Algorithm:
 
 ```python
