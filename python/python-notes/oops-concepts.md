@@ -381,3 +381,55 @@ print(result)  # Output: Vector(6, 8)
 > **Cons**: Misuse can lead to confusing code.
 
 ***
+
+### Shallow Copy Vs Deep Copy
+
+<div align="left"><figure><img src="../../.gitbook/assets/image.png" alt="" width="375"><figcaption><p><a href="https://www.google.com/url?sa=i&#x26;url=https%3A%2F%2Fjavascript.plainenglish.io%2Funderstanding-deep-copy-and-shallow-copy-in-javascript-150116ab84bf&#x26;psig=AOvVaw2h-sP5XNU0W-b_XHrHYo86&#x26;ust=1746069232639000&#x26;source=images&#x26;cd=vfe&#x26;opi=89978449&#x26;ved=0CBcQjhxqFwoTCJjOovXk_owDFQAAAAAdAAAAABAW">source</a></p></figcaption></figure></div>
+
+[Source](https://stackoverflow.com/questions/17246693/what-is-the-difference-between-shallow-copy-deepcopy-and-normal-assignment-oper):&#x20;
+
+Normal assignment operations will simply point the new variable towards the existing object. The [docs](http://docs.python.org/2/library/copy.html) explain the difference between shallow and deep copies:
+
+> The difference between shallow and deep copying is only relevant for compound objects (objects that contain other objects, like lists or class instances):
+>
+> * A shallow copy constructs a new compound object and then (to the extent possible) inserts references into it to the objects found in the original.
+> * A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
+
+Here's a little demonstration:
+
+```python
+import copy
+
+a = [1, 2, 3]
+b = [4, 5, 6]
+c = [a, b]
+```
+
+Using normal assignment operatings to copy:
+
+```python
+d = c
+
+print id(c) == id(d)          # True - d is the same object as c
+print id(c[0]) == id(d[0])    # True - d[0] is the same object as c[0]
+```
+
+Using a shallow copy:
+
+```python
+d = copy.copy(c)
+
+print id(c) == id(d)          # False - d is now a new object
+print id(c[0]) == id(d[0])    # True - d[0] is the same object as c[0]
+```
+
+Using a deep copy:
+
+```python
+d = copy.deepcopy(c)
+
+print id(c) == id(d)          # False - d is now a new object
+print id(c[0]) == id(d[0])    # False - d[0] is now a new object
+```
+
+<figure><img src="../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
