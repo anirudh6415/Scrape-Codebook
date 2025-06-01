@@ -33,6 +33,7 @@
 
 ## Machine Learning
 
+* [Fast Reference - Interview Questions](machine-learning/fast-reference-interview-questions.md)
 * [Machine Learning](machine-learning/machine-learning/README.md)
   * [ML Introduction](machine-learning/machine-learning/ml-introduction.md)
   * [Math for ML](machine-learning/machine-learning/math-for-ml.md)
@@ -59,6 +60,10 @@
 ## System Design for ML
 
 * [System Design ](system-design-for-ml/page-4.md)
+
+***
+
+* [Low Level Design](low-level-design.md)
 
 ## SQL & Data Engineering
 
