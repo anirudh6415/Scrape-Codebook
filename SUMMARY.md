@@ -55,7 +55,22 @@
 
 ## GenAI + LLMs
 
-* [GenAI + LLM's](genai-+-llms/page-3.md)
+* [GenAI + LLM's](genai-+-llms/genai-+-llms/README.md)
+  * [Word Embeddigs](genai-+-llms/genai-+-llms/word-embeddigs.md)
+  * [NLP Tasks](genai-+-llms/genai-+-llms/nlp-tasks.md)
+  * [Data Processing](genai-+-llms/genai-+-llms/data-processing.md)
+  * [Architecture](genai-+-llms/genai-+-llms/architecture.md)
+  * [Token Sampling Methods](genai-+-llms/genai-+-llms/token-sampling-methods.md)
+  * [Encoder vs Decoder vs Encoder-Decoder](genai-+-llms/genai-+-llms/encoder-vs-decoder-vs-encoder-decoder.md)
+  * [LLMs](genai-+-llms/genai-+-llms/llms.md)
+  * [Optimization](genai-+-llms/genai-+-llms/optimization.md)
+  * [Hallucinations](genai-+-llms/genai-+-llms/hallucinations.md)
+  * [Machine Translation, Knowledge Graphs](genai-+-llms/genai-+-llms/machine-translation-knowledge-graphs.md)
+  * [Retrieval Augmented Generation (RAG)](genai-+-llms/genai-+-llms/retrieval-augmented-generation-rag.md)
+  * [Textual Entailment, Context Length](genai-+-llms/genai-+-llms/textual-entailment-context-length.md)
+  * [Fine-Tuning Methods](genai-+-llms/genai-+-llms/fine-tuning-methods.md)
+  * [Prompt Engineering Techniques](genai-+-llms/genai-+-llms/prompt-engineering-techniques.md)
+  * [Evaluation of LLMs](genai-+-llms/genai-+-llms/evaluation-of-llms.md)
 
 ## System Design for ML
 
