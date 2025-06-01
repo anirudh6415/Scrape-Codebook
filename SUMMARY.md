@@ -56,7 +56,7 @@
 ## GenAI + LLMs
 
 * [GenAI + LLM's](genai-+-llms/genai-+-llms/README.md)
-  * [Word Embeddigs](genai-+-llms/genai-+-llms/word-embeddigs.md)
+  * [Word Embeddings](genai-+-llms/genai-+-llms/word-embeddings.md)
   * [NLP Tasks](genai-+-llms/genai-+-llms/nlp-tasks.md)
   * [Data Processing](genai-+-llms/genai-+-llms/data-processing.md)
   * [Architecture](genai-+-llms/genai-+-llms/architecture.md)
