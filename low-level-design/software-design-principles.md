@@ -45,6 +45,31 @@ subject2_avg = calculate_average([70, 75, 65])
 * **How:** Break down complex problems into smaller, manageable functions or classes. Avoid over-engineering and focus on clear, concise solutions.
 * **Example:** Instead of writing a deeply nested function, split logic into smaller, focused functions.
 
+Overengineered Version
+
+```python
+def factorial(n):
+    result = 1
+    if n< 0:
+        return "Factorial undefined for negative numbers"
+    else n==0:
+        return 1
+    else:
+        for i in range(2,n+1):
+            result *=i
+    return result
+```
+
+A simple, clean implementation
+
+```python
+import math
+def factorial(n):
+    if n< 0:
+        return "Factorial undefined for negative numbers"
+    return math.factorial(n)
+```
+
 ***
 
 ### 3. YAGNI (You Aren't Gonna Need It) <a href="#id-3-yagni-you-arent-gonna-need-it" id="id-3-yagni-you-arent-gonna-need-it"></a>
