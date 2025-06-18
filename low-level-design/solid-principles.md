@@ -10,12 +10,12 @@ These five software development principles are guidelines to follow when buildin
 
 ### The SOLID Principles <a href="#id-29fe" id="id-29fe"></a>
 
-#### S — Single Responsibility principle (SRP) <a href="#id-8699" id="id-8699"></a>
+#### S - Single Responsibility principle (SRP) <a href="#id-8699" id="id-8699"></a>
 
-#### O — Open-Closed principle (OCP) <a href="#id-3984" id="id-3984"></a>
+#### O - Open-Closed principle (OCP) <a href="#id-3984" id="id-3984"></a>
 
-#### **L** — **Liskov Substitution** principle (LSP)
+#### **L -** **Liskov Substitution** principle (LSP)
 
-#### **I** — **Interface Segregation** principle (ISP)
+#### **I -** **Interface Segregation** principle (ISP)
 
-#### **D** — **Dependency Inversion** principle (DIP)
+#### **D -** **Dependency Inversion** principle (DIP)
