@@ -9,6 +9,33 @@ Design principles are essential for building maintainable, scalable, and robust 
 * **How:** Use functions, classes, and modules to encapsulate reusable logic. In Python and C++, this means abstracting repeated code into functions or classes.
 * **Example:** If a calculation appears in multiple places, create a function for it instead of copying the code everywhere.
 
+This violates the DRY principle since logic is repeated.
+
+```python
+def calculate_subject1(marks):
+    total = sum(marks)
+    average = total / len(marks)
+    return average
+
+def calculate_subject2(marks):
+    total = sum(marks)
+    average = total / len(marks)
+    return average
+
+```
+
+Refactor to a single reusable function:
+
+```python
+def calculate_average(marks):
+    if not marks:
+        return 0
+    return sum(marks) / len(marks)
+
+subject1_avg = calculate_average([80, 90, 85])
+subject2_avg = calculate_average([70, 75, 65])
+```
+
 ***
 
 ### 2. KISS (Keep It Simple, Stupid) <a href="#id-2-kiss-keep-it-simple-stupid" id="id-2-kiss-keep-it-simple-stupid"></a>
