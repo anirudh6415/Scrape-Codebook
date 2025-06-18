@@ -2,7 +2,11 @@
 
 ## **References:**
 
+{% embed url="https://www.interviewbit.com/low-level-design-interview-questions/" %}
 
+{% embed url="https://www.finalroundai.com/blog/low-level-design-interview-questions" %}
+
+{% embed url="https://github.com/ashishps1/awesome-low-level-design" %}
 
 
 
