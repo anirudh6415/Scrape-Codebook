@@ -384,7 +384,7 @@ print(result)  # Output: Vector(6, 8)
 
 ### Shallow Copy Vs Deep Copy
 
-<div align="center" data-full-width="true"><figure><img src="../../.gitbook/assets/image.png" alt="" width="563"><figcaption><p><a href="https://www.google.com/url?sa=i&#x26;url=https%3A%2F%2Fjavascript.plainenglish.io%2Funderstanding-deep-copy-and-shallow-copy-in-javascript-150116ab84bf&#x26;psig=AOvVaw2h-sP5XNU0W-b_XHrHYo86&#x26;ust=1746069232639000&#x26;source=images&#x26;cd=vfe&#x26;opi=89978449&#x26;ved=0CBcQjhxqFwoTCJjOovXk_owDFQAAAAAdAAAAABAW">source</a></p></figcaption></figure></div>
+<div align="center" data-full-width="true"><figure><img src="../../.gitbook/assets/image (1).png" alt="" width="563"><figcaption><p><a href="https://www.google.com/url?sa=i&#x26;url=https%3A%2F%2Fjavascript.plainenglish.io%2Funderstanding-deep-copy-and-shallow-copy-in-javascript-150116ab84bf&#x26;psig=AOvVaw2h-sP5XNU0W-b_XHrHYo86&#x26;ust=1746069232639000&#x26;source=images&#x26;cd=vfe&#x26;opi=89978449&#x26;ved=0CBcQjhxqFwoTCJjOovXk_owDFQAAAAAdAAAAABAW">source</a></p></figcaption></figure></div>
 
 [Source](https://stackoverflow.com/questions/17246693/what-is-the-difference-between-shallow-copy-deepcopy-and-normal-assignment-oper):&#x20;
 
