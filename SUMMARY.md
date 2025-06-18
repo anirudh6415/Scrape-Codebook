@@ -56,7 +56,7 @@
 ## GenAI + LLMs
 
 * [GenAI + LLM's](genai-+-llms/genai-+-llms/README.md)
-  * [Word Embeddings](genai-+-llms/genai-+-llms/word-embeddings.md)
+  * [Word Embeddings](genai-+-llms/genai-+-llms/word-embeddigs.md)
   * [NLP Tasks](genai-+-llms/genai-+-llms/nlp-tasks.md)
   * [Data Processing](genai-+-llms/genai-+-llms/data-processing.md)
   * [Architecture](genai-+-llms/genai-+-llms/architecture.md)
@@ -78,7 +78,18 @@
 
 ***
 
-* [Low Level Design](low-level-design.md)
+* [Low Level Design](low-level-design/README.md)
+  * [Introduction to LLD](low-level-design/introduction-to-lld.md)
+  * [Software Design Principles](low-level-design/software-design-principles.md)
+  * [SOLID Principles](low-level-design/solid-principles.md)
+  * [UML & Class Diagrams](low-level-design/uml-and-class-diagrams.md)
+  * [Creational Design Patterns](low-level-design/creational-design-patterns.md)
+  * [Structural Design Patterns](low-level-design/structural-design-patterns.md)
+  * [Behavioural Design Patterns](low-level-design/behavioural-design-patterns.md)
+  * [Multithreading & Concurrency](low-level-design/multithreading-and-concurrency.md)
+  * [Dependency Injection](low-level-design/dependency-injection.md)
+  * [Best Practices in LLD](low-level-design/best-practices-in-lld.md)
+  * [Interview Problems](low-level-design/interview-problems.md)
 
 ## SQL & Data Engineering
 
