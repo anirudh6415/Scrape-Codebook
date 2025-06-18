@@ -178,3 +178,11 @@ def register_user(username, email, password):
 
 ***
 
+References:
+
+* [DRY Principle](https://blog.algomaster.io/p/082450d8-0e7b-4447-a8dc-b7308e45f048)
+* [YAGNI Principle](https://blog.algomaster.io/p/8c3c7da7-885b-4a9c-a6e4-70ee02de4772)
+* [KISS Principle](https://blog.algomaster.io/p/21b57678-b351-4ed4-b390-3b6308af2f7d)
+* [Basics OOP Concepts](https://blog.algomaster.io/p/basic-oop-concepts-explained-with-code)
+* [https://anirudh-docs.gitbook.io/scrape-codebook/python/python-notes/oops-concepts](https://anirudh-docs.gitbook.io/scrape-codebook/python/python-notes/oops-concepts)&#x20;
+
