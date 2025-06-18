@@ -2,6 +2,8 @@
 
 Design principles are essential for building maintainable, scalable, and robust software systems.&#x20;
 
+<div data-full-width="false"><figure><img src="../.gitbook/assets/image (23).png" alt="" width="375"><figcaption><p><a href="https://dev.to/juniourrau/clean-code-essentials-yagni-kiss-and-dry-in-software-engineering-4i3j">source</a></p></figcaption></figure></div>
+
 ### 1. DRY (Don't Repeat Yourself) <a href="#id-1-dry-dont-repeat-yourself" id="id-1-dry-dont-repeat-yourself"></a>
 
 * **Definition:** The DRY principle emphasizes reducing code duplication by ensuring that each piece of logic has a single, authoritative source within the system.
@@ -78,6 +80,41 @@ def factorial(n):
 * **Why:** Prevents code bloat and reduces unnecessary complexity, making the codebase easier to maintain.
 * **How:** Focus on current requirements and avoid speculative additions. Add features only when there is a clear need.
 * **Example:** Don’t add extra configuration options or extensibility hooks unless there is a real use case.
+
+Violation of YAGNI – Overengineering Example
+
+* `phone_number`, `address`, `referral_code`, `wants_newsletter`, `is_admin` are _not required_ at this stage.
+* Adds unnecessary parameters and complexity — none of them are being used.
+* Premature features = more code to test, maintain, and secure.
+
+```python
+def register_user(username, email, password, phone_number=None, address=None, referral_code=None, wants_newsletter=False, is_admin=False):
+    # Save user to database
+    user = {
+        "username": username,
+        "email": email,
+        "password": password,
+        "phone_number": phone_number,
+        "address": address,
+        "referral_code": referral_code,
+        "newsletter": wants_newsletter,
+        "admin": is_admin
+    }
+    print("User registered:", user)
+```
+
+```python
+def register_user(username, email, password):
+    user = {
+        "username": username,
+        "email": email,
+        "password": password
+    }
+    print("User registered:", user)
+```
+
+* Does **only what’s needed** to register a user.
+* Easy to read, test, and extend **only if needed later**.
 
 ***
 
