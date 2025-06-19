@@ -207,6 +207,16 @@ class SimplePrinter(Printer):
 >
 > Abstractions should not depend on details. Details should depend on abstractions.
 
+{% hint style="info" %}
+**High-level Module(or Class)**: A Class that executes an action with a tool.
+
+**Low-level Module (or Class)**: The tool that is needed to execute the action
+
+**Abstraction**: Represents an interface that connects the two Classes.
+
+**Details**: How the tool works
+{% endhint %}
+
 **Why:** Direct dependencies between high-level and low-level modules make code rigid and hard to change.
 
 **Goal:** Reduce coupling by introducing interfaces or abstract classes, making the system more flexible and testable.
