@@ -25,7 +25,7 @@ These five software development principles are guidelines to follow when buildin
 
 **Example:** A `Report` class should only handle report generation, not saving or emailing reports. Those should be separate classes.
 
-Violates SRP: Report CLASS handles both authentication and logging.
+Violates SRP: Report CLASS handles generating, saving, and emailing.
 
 ```python
 class Report:
