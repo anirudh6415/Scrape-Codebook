@@ -11,7 +11,9 @@
 Singletons are the simplest patterns, but harder to implement. There are multiple ways to implement the Singleton pattern.
 
 {% hint style="info" %}
-For code and Detailed explanation: [https://blog.algomaster.io/p/singleton-design-pattern](https://blog.algomaster.io/p/singleton-design-pattern)
+For Detailed explanation: [https://blog.algomaster.io/p/singleton-design-pattern](https://blog.algomaster.io/p/singleton-design-pattern)
+
+For codes in Python: [https://github.com/ashishps1/awesome-low-level-design/tree/main/design-patterns/python/singleton](https://github.com/ashishps1/awesome-low-level-design/tree/main/design-patterns/python/singleton)
 {% endhint %}
 
 ### 1. Lazy Initialization
