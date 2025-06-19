@@ -10,19 +10,19 @@
 
 Singletons are the simplest patterns, but harder to implement. There are multiple ways to implement the Singleton pattern.
 
-### Lazy Initialization
+### 1. Lazy Initialization
 
-### Thread-safe Singleton&#x20;
+### 2. Thread-safe Singleton&#x20;
 
-### Double-check locking
+### 3. Double-check locking
 
-### Eager initialization
+### 4. Eager initialization
 
-### Bill Pugh Singleton
+### 5. Bill Pugh Singleton
 
-### Enum Singleton
+### 6. Enum Singleton
 
-### Stack Block Initialization
+### 7. Stack Block Initialization
 
 
 
