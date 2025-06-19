@@ -19,7 +19,7 @@ These five software development principles are guidelines to follow when buildin
 
 > A `CLASS` should only have one reason to change. i.e. one responsibility
 
-**Why:** If a class has multiple responsibilities, changes to one responsibility can unintentionally affect others, increasing the risk of bugs.
+**Why:** If a `"CLASS"` has multiple responsibilities, changes to one responsibility can unintentionally affect others, increasing the risk of bugs.
 
 **Goal:** Separate behaviors so that changes in one area do not impact unrelated areas.
 
