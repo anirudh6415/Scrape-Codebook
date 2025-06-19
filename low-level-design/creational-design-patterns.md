@@ -26,16 +26,28 @@ Singletons are the simplest patterns, but harder to implement. There are multipl
 
 
 
+***
+
 ## Factory Method
 
 
+
+***
 
 ## Abstract Factory
 
 
 
+***
+
 ## Builder
 
 
 
+***
+
 ## Prototype
+
+
+
+***
