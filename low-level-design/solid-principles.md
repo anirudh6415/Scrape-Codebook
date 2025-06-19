@@ -23,9 +23,37 @@ These five software development principles are guidelines to follow when buildin
 
 **Goal:** Separate behaviors so that changes in one area do not impact unrelated areas.
 
-**Example:** A `Report` class should only handle report generation, not saving or emailing reports. Those should be separate classes
+**Example:** A `Report` class should only handle report generation, not saving or emailing reports. Those should be separate classes.
+
+Violates SRP: Report CLASS handles both authentication and logging.
 
 ```python
+class Report:
+    def generate(self):
+        print("Generating report...")
+
+    def save(self):
+        print("Saving report to disk...")
+
+    def email(self):
+        print("Emailing report...")
+```
+
+SRP-compliant: Separate classes for each responsibility
+
+```python
+class Report:
+    def generate(self):
+        print("Generating report...")
+
+class ReportSaver:
+    def save(self, report):
+        print("Saving report to disk...")
+
+class ReportEmailer:
+    def email(self, report):
+        print("Emailing report...")
+
 ```
 
 ***
@@ -40,7 +68,36 @@ These five software development principles are guidelines to follow when buildin
 
 **Example:** Add new features by creating subclasses or using interfaces, rather than altering the original class.
 
+**Violation:** Adding new report formats requires modifying the existing class.
+
 ```python
+class ReportPrinter:
+    def print_report(self, report, format_type):
+        if format_type == "PDF":
+            print("Printing PDF report...")
+        elif format_type == "HTML":
+            print("Printing HTML report...")
+
+```
+
+**Correction:** Extend functionality by adding new classes, not modifying existing ones.
+
+```python
+from abc import ABC, abstractmethod
+
+class ReportPrinter(ABC):
+    @abstractmethod
+    def print_report(self, report):
+        pass
+
+class PDFReportPrinter(ReportPrinter):
+    def print_report(self, report):
+        print("Printing PDF report...")
+
+class HTMLReportPrinter(ReportPrinter):
+    def print_report(self, report):
+        print("Printing HTML report...")
+
 ```
 
 ***
@@ -55,7 +112,36 @@ These five software development principles are guidelines to follow when buildin
 
 **Example:** If a `Coffee` class has a `Cappuccino` subclass, the subclass should behave like a `Coffee` In all contexts where `Coffee` is expected.
 
+**Violation:** A subclass breaks the expected behavior of the base class.
+
 ```python
+class Coffee:
+    def brew(self):
+        print("Brewing coffee...")
+
+class Cappuccino(Coffee):
+    def brew(self):
+        raise Exception("Cappuccino cannot be brewed like regular coffee!")
+
+```
+
+**Correction:** The subclass can be used anywhere the base class is expected.
+
+```python
+class Coffee:
+    def brew(self):
+        print("Brewing coffee...")
+
+class Cappuccino(Coffee):
+    def brew(self):
+        print("Brewing cappuccino...")
+
+def make_coffee(coffee: Coffee):
+    coffee.brew()
+
+make_coffee(Coffee())        # Works
+make_coffee(Cappuccino())    # Also works, as expected
+
 ```
 
 ***
@@ -70,7 +156,47 @@ These five software development principles are guidelines to follow when buildin
 
 **Example:** Instead of one big interface for all printer functions, have separate interfaces for scanning, printing, and faxing.
 
+**Violation:** A single interface forces classes to implement unused methods.
+
 ```python
+class MultiFunctionPrinter:
+    def print(self):
+        pass
+    def scan(self):
+        pass
+    def fax(self):
+        pass
+
+class SimplePrinter(MultiFunctionPrinter):
+    def print(self):
+        print("Printing...")
+    def scan(self):
+        pass  # Not needed
+    def fax(self):
+        pass  # Not needed
+
+```
+
+**Correction:** Split into smaller, focused interfaces.
+
+```python
+class Printer:
+    def print(self):
+        print("Printing...")
+
+class Scanner:
+    def scan(self):
+        print("Scanning...")
+
+class Fax:
+    def fax(self):
+        print("Faxing...")
+
+class MultiFunctionPrinter(Printer, Scanner, Fax):
+    pass
+
+class SimplePrinter(Printer):
+    pass
 ```
 
 ***
@@ -85,9 +211,56 @@ These five software development principles are guidelines to follow when buildin
 
 **Goal:** Reduce coupling by introducing interfaces or abstract classes, making the system more flexible and testable.
 
-**Example:** A `LightSwitch` class should depend on a `SwitchableDevice` interface, not directly on a `LightBulb` class
+**Example:** A `LightSwitch` class should depend on a `SwitchableDevice` interface, not directly on a `LightBulb` class.
+
+**Violation:** High-level class depends directly on a low-level class.
 
 ```python
+class LightBulb:
+    def turn_on(self):
+        print("LightBulb ON")
+    def turn_off(self):
+        print("LightBulb OFF")
+
+class LightSwitch:
+    def __init__(self, LightBulb):
+        self.bulb = LightBulb
+    def operate(self, on):
+        if on:
+            self.bulb.turn_on()
+        else:
+            self.bulb.turn_off()
+
+```
+
+**Correction:** Depending on an abstraction/interface.
+
+```python
+from abc import ABC, abstractmethod
+
+class SwitchableDevice(ABC):
+    @abstractmethod
+    def turn_on(self):
+        pass
+    @abstractmethod
+    def turn_off(self):
+        pass
+
+class LightBulb(SwitchableDevice):
+    def turn_on(self):
+        print("LightBulb ON")
+    def turn_off(self):
+        print("LightBulb OFF")
+
+class LightSwitch:
+    def __init__(self, device: SwitchableDevice):
+        self.device = device
+    def operate(self, on):
+        if on:
+            self.device.turn_on()
+        else:
+            self.device.turn_off()
+
 ```
 
 ***
