@@ -275,4 +275,6 @@ class LightSwitch:
 
 ***
 
+### Summary
+
 <table><thead><tr><th width="85.83868408203125">Principle</th><th width="141.58319091796875">Name</th><th>Key Idea</th></tr></thead><tbody><tr><td>S</td><td>Single Responsibility</td><td>A class should have only one reason to change—one responsibility</td></tr><tr><td>O</td><td>Open-Closed</td><td>A class should be open for extension, but closed for modification</td></tr><tr><td>L</td><td>Liskov Substitution</td><td>Subclasses should be substitutable for their base classes without altering correctness</td></tr><tr><td>I</td><td>Interface Segregation</td><td>Classes should not be forced to depend on methods they do not use</td></tr><tr><td>D</td><td>Dependency Inversion</td><td>High-level modules should not depend on low-level modules; both should depend on abstractions</td></tr></tbody></table>
