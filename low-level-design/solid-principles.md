@@ -4,18 +4,18 @@ These five software development principles are guidelines to follow when buildin
 
 <figure><img src="../.gitbook/assets/SOLID.png" alt=""><figcaption></figcaption></figure>
 
-### For better visual understanding:
+{% hint style="info" %}
+### For better visual understanding: [The S.O.L.I.D Principles in Pictures](https://medium.com/backticks-tildes/the-s-o-l-i-d-principles-in-pictures-b34ce2f1e898)
+{% endhint %}
 
-[The S.O.L.I.D Principles in Pictures](https://medium.com/backticks-tildes/the-s-o-l-i-d-principles-in-pictures-b34ce2f1e898)
-
-### The SOLID Principles <a href="#id-29fe" id="id-29fe"></a>
+## The SOLID Principles <a href="#id-29fe" id="id-29fe"></a>
 
 > TO MAKE EASIER AND SIMPLE TO FOLLOW.&#x20;
 >
 > 1. I WILL BE USING WORD `"CLASS"`  FOR SIMPLICITY.
 > 2. THESE BELOW PRINCIPLES CAN ALSO BE APPLIED TO `"FUNCTIONS", "METHOD" OR "MODULE".`
 
-#### S - Single Responsibility Principle (SRP) <a href="#id-8699" id="id-8699"></a>
+### S - Single Responsibility Principle (SRP) <a href="#id-8699" id="id-8699"></a>
 
 > A `CLASS` should only have one reason to change. i.e. one responsibility
 
@@ -58,7 +58,7 @@ class ReportEmailer:
 
 ***
 
-#### O - Open-Closed Principle (OCP) <a href="#id-3984" id="id-3984"></a>
+### O - Open-Closed Principle (OCP) <a href="#id-3984" id="id-3984"></a>
 
 > A `CLASS` should be open for extension but closed for modification.
 
@@ -102,7 +102,7 @@ class HTMLReportPrinter(ReportPrinter):
 
 ***
 
-#### **L -** **Liskov Substitution P**rinciple (LSP)
+### **L -** **Liskov Substitution P**rinciple (LSP)
 
 > If S is a subtype of T, then objects of type T in a program may be replaced with objects of type S without altering any of the desirable properties of that program.
 
@@ -146,7 +146,7 @@ make_coffee(Cappuccino())    # Also works, as expected
 
 ***
 
-#### **I -** **Interface Segregation** Principle (ISP)
+### **I -** **Interface Segregation** Principle (ISP)
 
 > Classes should not be forced to depend on methods they do not use.
 
@@ -201,7 +201,7 @@ class SimplePrinter(Printer):
 
 ***
 
-#### **D -** **Dependency Inversion** Principle (DIP)
+### **D -** **Dependency Inversion** Principle (DIP)
 
 > High-level modules should not depend on low-level modules. Both should depend on the abstraction.
 >
