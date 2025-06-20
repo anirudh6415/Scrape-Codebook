@@ -69,7 +69,117 @@ For codes in Python: [https://github.com/ashishps1/awesome-low-level-design/tree
 
 ## Factory Method
 
+<figure><img src="../.gitbook/assets/image.png" alt="" width="375"><figcaption></figcaption></figure>
 
+> The **Factory Method** is a creational design pattern that provides an **interface for creating objects in a superclass**, but **allows subclasses to alter the type of objects that will be created**.
+>
+> * It delegates the responsibility of object instantiation to subclasses.
+> * Helps adhere to the **Open/Closed Principle**: You can introduce new products without modifying existing code.
+> * Useful when your code needs to decide which class to instantiate at runtime.
+
+### Simple Factory – Why Not Use It?
+
+A **Simple Factory** is not a formal design pattern in the Gang of Four (GoF) book, but it’s one of the most practical and widely used refactoring techniques in real-world codebases.
+
+In a **simple factory**, you typically use a single method with lots of `if`/`elif`/`switch` statements to create different types of objects based on input.
+
+```python
+class Dog:
+    def speak(self):
+        print("Bark!")
+
+class Cat:
+    def speak(self):
+        print("Meow!")
+
+class AnimalFactory:
+    @staticmethod
+    def create_animal(animal_type):
+        if animal_type == "dog":
+            return Dog()
+        elif animal_type == "cat":
+            return Cat()
+        else:
+            raise ValueError("Unknown animal type")
+
+# Usage
+animal = AnimalFactory.create_animal("cat")
+animal.speak()  # Output: Meow!
+```
+
+**Drawbacks of Simple Factory:**
+
+* **Violates Open/Closed Principle**: You must modify the `create_animal()` method each time a new type is added.
+* Harder to maintain: One centralized function with many conditionals.
+* Not extensible: Client code can’t easily extend behavior without editing the factory.
+
+### Enter: Factory Method
+
+Instead of using if-else logic in one place, Factory Method pushes object creation to **subclasses** via a dedicated method.
+
+#### **Structure:**
+
+* **Product**: Base interface or abstract class.
+* **ConcreteProduct**: Actual classes implementing the Product.
+* **Creator**: Abstract class defining the factory method.
+* **ConcreteCreator**: Subclass that overrides factory method to return a specific ConcreteProduct.
+
+```python
+from abc import ABC, abstractmethod
+
+# Product interface
+class Animal(ABC):
+    @abstractmethod
+    def speak(self):
+        pass
+
+# Concrete Products
+class Dog(Animal):
+    def speak(self):
+        print("Bark!")
+
+class Cat(Animal):
+    def speak(self):
+        print("Meow!")
+
+# Creator (Abstract Factory)
+class AnimalFactory(ABC):
+    @abstractmethod
+    def create_animal(self):
+        pass
+
+# Concrete Creators
+class DogFactory(AnimalFactory):
+    def create_animal(self):
+        return Dog()
+
+class CatFactory(AnimalFactory):
+    def create_animal(self):
+        return Cat()
+
+# Usage
+factory = CatFactory()
+animal = factory.create_animal()
+animal.speak()  # Output: Meow!
+```
+
+#### Why It’s Better
+
+* **Open/Closed Principle**: Easily add new products without touching existing code.
+* **Separation of concerns**: Each class has a single responsibility.
+* **Extensibility**: Clients can introduce new products by subclassing.
+
+#### When to Use Factory Method
+
+* When the exact type of object needs to be determined at **runtime**.
+* When you need to **delegate instantiation logic** to subclasses.
+* When your system must support **plug-and-play product families**.
+
+| Pros                                                                                                 | Cons                                                         |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Adheres to the **Open/Closed Principle** – new products can be added without modifying existing code | Introduces **more classes** compared to simple factories     |
+| **Decouples client code** from concrete product implementations                                      | Can be **overkill** for simple object creation scenarios     |
+| Each **creator subclass** can have its **own specialized logic**                                     | Slightly **higher learning curve** due to use of inheritance |
 
 ***
 

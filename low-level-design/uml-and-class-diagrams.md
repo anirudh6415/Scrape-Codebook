@@ -13,7 +13,7 @@ Among all UML diagrams, the **Class Diagram** is the most widely used and fundam
 
 > Static structure diagram in UML that represents the structure of a system by showing its classes, their attributes (properties), methods (operations), and the relationships between classes.
 
-<figure><img src="../.gitbook/assets/image.png" alt="" width="315"><figcaption><p><a href="https://www.visual-paradigm.com/guide/uml-unified-modeling-language/uml-class-diagram-tutorial/">source</a></p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt="" width="315"><figcaption><p><a href="https://www.visual-paradigm.com/guide/uml-unified-modeling-language/uml-class-diagram-tutorial/">source</a></p></figcaption></figure>
 
 Each class is depicted as a rectangle divided into three compartments:
 
