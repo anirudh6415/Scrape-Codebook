@@ -530,6 +530,125 @@ email.send()
 
 ## Prototype
 
+The **Prototype Pattern** is a **creational design pattern** that allows you to create new objects **by cloning existing instances**, instead of instantiating from scratch.
 
+“Don’t build from the ground up every time. Copy what’s already working.”
+
+### When to Use
+
+* When object creation is **expensive, slow, or resource-intensive** (e.g., DB connections, deep object hierarchies).
+* To avoid **duplicating complex initialization logic**.
+* When you need **many similar objects** with only slight differences.
+* When creating many objects that share a common structure.
+
+### The problem: Game Character Prototype
+
+In a video game, you often have **base character templates** like:
+
+* **Warrior**
+* **Wizards**
+* Goblins
+
+Each has default stats, weapons, abilities, and gear. When a new player joins, instead of building these characters from scratch every time (repeating logic), the system **clones a prototype character** and allows the player to customize it slightly (e.g., rename, tweak color or armor).
+
+#### Naive Implementation
+
+```python
+class GameCharacter:
+    def __init__(self, name, strength, agility, intelligence, equipment):
+        self.name = name
+        self.strength = strength
+        self.agility = agility
+        self.intelligence = intelligence
+        self.equipment = equipment
+
+# Creating a character manually
+goblin1 = GameCharacter("Goblin Grunt", 10, 12, 5, ["Club", "Leather Armor"])
+# Want a similar goblin? Duplicate code:
+goblin2 = GameCharacter("Goblin Guard", 10, 12, 5, ["Club", "Leather Armor"])
+
+```
+
+#### Why Naive Is a Problem
+
+* Duplicated logic — prone to human error
+* Tedious when dozens of characters differ only slightly
+* Inflexible for dynamic cloning
+
+#### Cloning Challenges
+
+1. **Encapsulation gets in the way**\
+   Private fields or internal states can make copying hard from outside the object.
+2. **Class-level dependency**\
+   Cloning logic often requires knowledge of the class structure, violating encapsulation.
+3. **Interface-only context**\
+   If you're working with interfaces, cloning a concrete instance without knowing its type can be difficult.
+
+### Enter: Prototype Pattern
+
+Instead of configuring every new object manually, we define a **prototype** and simply **clone** it when needed.
+
+This can be done via:
+
+* **Shallow copy** (default `copy.copy()`)
+* **Deep copy** (using `copy.deepcopy()` for nested structures)
+
+#### Class Diagram
+
+<figure><img src="../.gitbook/assets/prototype_design_pattern.png" alt=""><figcaption></figcaption></figure>
+
+<table><thead><tr><th width="273">Components</th><th></th></tr></thead><tbody><tr><td><strong>Prototype</strong></td><td>Interface declaring a <code>clone()</code> method</td></tr><tr><td><strong>ConcretePrototype</strong></td><td>Implements <code>clone()</code> (e.g., <code>Goblin1, Goblin2</code>)</td></tr><tr><td><strong>Client</strong></td><td>Uses <code>clone()</code> to create new objects from a pre-defined prototype</td></tr><tr><td><strong>Product</strong></td><td>The object being cloned (e.g., <code>GameCharacter</code>)</td></tr></tbody></table>
+
+#### Code
+
+```python
+import copy
+
+class GameCharacter:
+    def __init__(self, name, strength, agility, intelligence, equipment):
+        self.name = name
+        self.strength = strength
+        self.agility = agility
+        self.intelligence = intelligence
+        self.equipment = equipment
+
+    def clone(self):
+        return copy.deepcopy(self)
+
+    def display(self):
+        print(f"{self.name} | STR:{self.strength}, AGI:{self.agility}, INT:{self.intelligence}")
+        print(f"Equipment: {', '.join(self.equipment)}\n")
+
+# Prototype Instance
+goblin_prototype = GameCharacter("Goblin", 10, 12, 5, ["Club", "Leather Armor"])
+
+# Clone and customize
+goblin1 = goblin_prototype.clone()
+goblin1.name = "Goblin Grunt"
+
+goblin2 = goblin_prototype.clone()
+goblin2.name = "Goblin Captain"
+goblin2.equipment.append("Shield")
+
+# Usage
+goblin1.display()
+goblin2.display()
+
+```
+
+#### What We Achieved
+
+* **Reduced duplication**: No repeated setup code.
+* **Flexibility**: Easy to create many variants with small changes.
+* **Encapsulation**: Cloning is handled within the object.
+
+### Pros and Cons
+
+| Pros                                                        | Cons                                                        |
+| ----------------------------------------------------------- | ----------------------------------------------------------- |
+| Avoids reinitializing objects from scratch                  | Cloning logic can get complex if object contains references |
+| Faster and cheaper than constructing new complex objects    | Deep vs shallow copy issues for nested/mutable structures   |
+| Promotes encapsulation – object manages its own duplication | May violate abstraction if clone depends on concrete type   |
+| Good when object creation is **resource-intensive**         | Not ideal for simple objects or stateless classes           |
 
 ***
