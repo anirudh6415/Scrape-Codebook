@@ -273,6 +273,8 @@ This works, but…
 
 ### Class Diagram Overview
 
+<figure><img src="../.gitbook/assets/abstarct_factory_diagram (1).png" alt=""><figcaption></figcaption></figure>
+
 <table><thead><tr><th width="189.10089111328125">Component</th><th>Description</th></tr></thead><tbody><tr><td><strong>Abstract Factory</strong></td><td><code>RestaurantFactory</code> – defines <code>create_appetizer()</code>, <code>create_main_course()</code>, <code>create_dessert()</code></td></tr><tr><td><strong>Abstract Products</strong></td><td><code>Appetizer</code>, <code>MainCourse</code>, <code>Dessert</code></td></tr><tr><td><strong>Concrete Factories</strong></td><td><code>ItalianRestaurantFactory</code>, <code>MexicanRestaurantFactory</code>, <code>BakeryFactory</code></td></tr><tr><td><strong>Concrete Products</strong></td><td><code>Bruschetta</code>, <code>Tacos</code>, <code>Croissant</code>, etc.</td></tr><tr><td><strong>Client</strong></td><td>Food delivery app that works with abstract interfaces<br></td></tr></tbody></table>
 
 ### Abstract Factory Implementation
@@ -368,75 +370,6 @@ order_meal(MexicanRestaurantFactory())
 | Adheres to **Open/Closed Principle**                 |                                                                       |
 
 ***
-
-```mermaid
-classDiagram
-    class RestaurantFactory {
-        <<interface>>
-        +create_appetizer()
-        +create_main_course()
-        +create_dessert()
-    }
-
-    class Appetizer {
-        <<interface>>
-    }
-
-    class MainCourse {
-        <<interface>>
-    }
-
-    class Dessert {
-        <<interface>>
-    }
-
-    class ItalianRestaurantFactory {
-        +create_appetizer()
-        +create_main_course()
-        +create_dessert()
-    }
-
-    class MexicanRestaurantFactory {
-        +create_appetizer()
-        +create_main_course()
-        +create_dessert()
-    }
-
-    class BakeryRestaurantFactory {
-        +create_appetizer()
-        +create_main_course()
-        +create_dessert()
-    }
-
-    class Bruschetta {
-        +prepare()
-    }
-
-    class Tacos {
-        +prepare()
-    }
-
-    class Croissant {
-        +prepare()
-    }
-
-    class Client {
-        +order_meal(factory)
-    }
-
-    RestaurantFactory <|-- ItalianRestaurantFactory
-    RestaurantFactory <|-- MexicanRestaurantFactory
-    RestaurantFactory <|-- BakeryRestaurantFactory
-
-    Appetizer <|-- Bruschetta
-    Appetizer <|-- Tacos
-    Appetizer <|-- Croissant
-
-    Client --> RestaurantFactory
-    ItalianRestaurantFactory --> Bruschetta
-    MexicanRestaurantFactory --> Tacos
-    BakeryRestaurantFactory --> Croissant
-```
 
 ## Builder
 
