@@ -1,6 +1,6 @@
 # Creational Design Patterns
 
-## Singleton
+## AbstractSingleton
 
 > A design pattern that guarantees a class has only one instance and is used as a global point of access to it.
 >
@@ -185,7 +185,187 @@ animal.speak()  # Output: Meow!
 
 ## Abstract Factory
 
+> The **Abstract Factory** is a **creational design pattern** that provides an interface for creating **families of related or dependent objects**, without specifying their concrete classes.
 
+### When to Use
+
+Use this pattern when:
+
+* You need to create **related objects that are always used together**, such as UI elements (e.g., button + checkbox).
+* You want to support **multiple product variants**, such as for **different platforms or configurations** (Windows/macOS/Linux; Android/iOS).
+* You want to **enforce consistency** across products that come from the same "factory".
+* You want to **isolate object creation** to easily switch product families at runtime.
+
+### The Problem – Food Delivery App
+
+You're building a **food delivery application** that supports multiple restaurants. Each restaurant offers a **consistent family of menu items**:
+
+* **Appetizer**
+* **Main Course**
+* **Dessert**
+
+You want to ensure that switching from Italian to Mexican cuisine automatically shows the appropriate, consistent set of menu items.
+
+### Naive Implementation :
+
+```python
+# Italian Menu
+class ItalianAppetizer:
+    def create(self):
+        print("Bruschetta")
+
+class ItalianMainCourse:
+    def create(self):
+        print("Margherita Pizza")
+
+class ItalianDessert:
+    def create(self):
+        print("Tiramisu")
+
+# Mexican Menu
+class MexicanAppetizer:
+    def create(self):
+        print("Guacamole")
+
+class MexicanMainCourse:
+    def create(self):
+        print("Tacos")
+
+class MexicanDessert:
+    def create(self):
+        print("Churros")
+
+# Client code (Tightly coupled)
+def order_meal(cuisine):
+    if cuisine == "italian":
+        appetizer = ItalianAppetizer()
+        main_course = ItalianMainCourse()
+        dessert = ItalianDessert()
+    elif cuisine == "mexican":
+        appetizer = MexicanAppetizer()
+        main_course = MexicanMainCourse()
+        dessert = MexicanDessert()
+    else:
+        raise ValueError("Unsupported cuisine")
+
+    appetizer.create()
+    main_course.create()
+    dessert.create()
+
+# Usage
+order_meal("italian")
+order_meal("mexican")
+```
+
+This works, but…
+
+* Tightly coupled to specific classes
+* No abstraction or polymorphism
+* Code repetition
+* Violates the **Open/Closed Principle** – adding new cuisines requires editing client logic
+
+### What We Actually Need
+
+* Group related components together as **families**
+* Use polymorphism to treat components generically
+* Encapsulate platform- or cuisine-specific creation logic
+* Add new products or product families **without changing core logic**
+
+### Class Diagram Overview
+
+<table><thead><tr><th width="189.10089111328125">Component</th><th>Description</th></tr></thead><tbody><tr><td><strong>Abstract Factory</strong></td><td><code>RestaurantFactory</code> – defines <code>create_appetizer()</code>, <code>create_main_course()</code>, <code>create_dessert()</code></td></tr><tr><td><strong>Abstract Products</strong></td><td><code>Appetizer</code>, <code>MainCourse</code>, <code>Dessert</code></td></tr><tr><td><strong>Concrete Factories</strong></td><td><code>ItalianRestaurantFactory</code>, <code>MexicanRestaurantFactory</code>, <code>BakeryFactory</code></td></tr><tr><td><strong>Concrete Products</strong></td><td><code>Bruschetta</code>, <code>Tacos</code>, <code>Croissant</code>, etc.</td></tr><tr><td><strong>Client</strong></td><td>Food delivery app that works with abstract interfaces<br></td></tr></tbody></table>
+
+### Abstract Factory Implementation
+
+```python
+from abc import ABC, abstractmethod
+
+# Abstract Products
+class Appetizer(ABC):
+    @abstractmethod
+    def prepare(self): pass
+
+class MainCourse(ABC):
+    @abstractmethod
+    def prepare(self): pass
+
+class Dessert(ABC):
+    @abstractmethod
+    def prepare(self): pass
+
+# Concrete Products - Italian
+class Bruschetta(Appetizer):
+    def prepare(self): print("Preparing Bruschetta")
+
+class MargheritaPizza(MainCourse):
+    def prepare(self): print("Baking Margherita Pizza")
+
+class Tiramisu(Dessert):
+    def prepare(self): print("Serving Tiramisu")
+
+# Concrete Products - Mexican
+class Guacamole(Appetizer):
+    def prepare(self): print("Preparing Guacamole")
+
+class Tacos(MainCourse):
+    def prepare(self): print("Assembling Tacos")
+
+class Churros(Dessert):
+    def prepare(self): print("Frying Churros")
+
+# Abstract Factory
+class RestaurantFactory(ABC):
+    @abstractmethod
+    def create_appetizer(self): pass
+
+    @abstractmethod
+    def create_main_course(self): pass
+
+    @abstractmethod
+    def create_dessert(self): pass
+
+# Concrete Factories
+class ItalianRestaurantFactory(RestaurantFactory):
+    def create_appetizer(self): return Bruschetta()
+    def create_main_course(self): return MargheritaPizza()
+    def create_dessert(self): return Tiramisu()
+
+class MexicanRestaurantFactory(RestaurantFactory):
+    def create_appetizer(self): return Guacamole()
+    def create_main_course(self): return Tacos()
+    def create_dessert(self): return Churros()
+
+# Client
+def order_meal(factory: RestaurantFactory):
+    appetizer = factory.create_appetizer()
+    main = factory.create_main_course()
+    dessert = factory.create_dessert()
+
+    appetizer.prepare()
+    main.prepare()
+    dessert.prepare()
+
+# Usage
+order_meal(ItalianRestaurantFactory())
+order_meal(MexicanRestaurantFactory())
+
+```
+
+#### What We Achieved
+
+* **Consistency**: Each cuisine has a full set of related dishes.
+* **Platform/Cuisine independence**: App logic works regardless of restaurant type.
+* **Open/Closed Principle**: New cuisines can be added without touching client logic.
+* **Polymorphism**: Client works with abstract interfaces, not concrete classes.
+
+### Pros and Cons
+
+| Pros                                                 | Cons                                                                  |
+| ---------------------------------------------------- | --------------------------------------------------------------------- |
+| Ensures **consistency** across product families      | Adds complexity due to many interfaces and classes                    |
+| Supports **easy switching** between product variants | Difficult to add new product types without modifying abstract factory |
+| Encourages **separation of concerns**                | Can be **overkill** for simple use cases                              |
+| Adheres to **Open/Closed Principle**                 |                                                                       |
 
 ***
 
