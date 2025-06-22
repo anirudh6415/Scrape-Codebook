@@ -369,6 +369,75 @@ order_meal(MexicanRestaurantFactory())
 
 ***
 
+```mermaid
+classDiagram
+    class RestaurantFactory {
+        <<interface>>
+        +create_appetizer()
+        +create_main_course()
+        +create_dessert()
+    }
+
+    class Appetizer {
+        <<interface>>
+    }
+
+    class MainCourse {
+        <<interface>>
+    }
+
+    class Dessert {
+        <<interface>>
+    }
+
+    class ItalianRestaurantFactory {
+        +create_appetizer()
+        +create_main_course()
+        +create_dessert()
+    }
+
+    class MexicanRestaurantFactory {
+        +create_appetizer()
+        +create_main_course()
+        +create_dessert()
+    }
+
+    class BakeryRestaurantFactory {
+        +create_appetizer()
+        +create_main_course()
+        +create_dessert()
+    }
+
+    class Bruschetta {
+        +prepare()
+    }
+
+    class Tacos {
+        +prepare()
+    }
+
+    class Croissant {
+        +prepare()
+    }
+
+    class Client {
+        +order_meal(factory)
+    }
+
+    RestaurantFactory <|-- ItalianRestaurantFactory
+    RestaurantFactory <|-- MexicanRestaurantFactory
+    RestaurantFactory <|-- BakeryRestaurantFactory
+
+    Appetizer <|-- Bruschetta
+    Appetizer <|-- Tacos
+    Appetizer <|-- Croissant
+
+    Client --> RestaurantFactory
+    ItalianRestaurantFactory --> Bruschetta
+    MexicanRestaurantFactory --> Tacos
+    BakeryRestaurantFactory --> Croissant
+```
+
 ## Builder
 
 
