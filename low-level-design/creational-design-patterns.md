@@ -447,7 +447,7 @@ We separate the **construction logic** (builder) from the **Email object itself*
 
 #### Class Diagram
 
-
+<figure><img src="../.gitbook/assets/Builder_design_pattern.png" alt=""><figcaption></figcaption></figure>
 
 | Component            | Description                                                                      |
 | -------------------- | -------------------------------------------------------------------------------- |
