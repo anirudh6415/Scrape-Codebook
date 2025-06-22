@@ -175,6 +175,8 @@ animal.speak()  # Output: Meow!
 * When you need to **delegate instantiation logic** to subclasses.
 * When your system must support **plug-and-play product families**.
 
+### Pros and Cons
+
 | Pros                                                                                                 | Cons                                                         |
 | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | Adheres to the **Open/Closed Principle** – new products can be added without modifying existing code | Introduces **more classes** compared to simple factories     |
