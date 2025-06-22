@@ -1,6 +1,6 @@
 # Creational Design Patterns
 
-## AbstractSingleton
+## Singleton
 
 > A design pattern that guarantees a class has only one instance and is used as a global point of access to it.
 >
@@ -375,7 +375,154 @@ order_meal(MexicanRestaurantFactory())
 
 ## Builder
 
+> The **Builder Pattern** is a **creational design pattern** that allows you to **construct complex objects step-by-step**, separating the object construction logic from the final representation.
 
+It provides better control over the construction process and avoids messy constructor overloading or telescoping constructors.
+
+### When to Use
+
+* The object has **many optional parameters**.
+* You want to **avoid long/** [Telescoping](https://en.wikipedia.org/wiki/Telescoping_constructor_pattern) **constructors** with too many arguments.
+* You want to **build an object step-by-step**, possibly in a specific sequence.
+* Object creation should be **decoupled** from its internal representation.
+
+### The Problem – Email or Notification Creation
+
+Imagine building an **Email** object with fields like: `to` , `from` , `subject` ,`body` ,`cc` ,`bcc` , `attachments`,`signature` .
+
+Naive Implementation:
+
+```python
+class Email:
+    def __init__(self, to, subject, body, cc=None, bcc=None, attachments=None, signature=None):
+        self.to = to
+        self.subject = subject
+        self.body = body
+        self.cc = cc
+        self.bcc = bcc
+        self.attachments = attachments or []
+        self.signature = signature
+
+    def send(self):
+        print("Sending Email:")
+        print(f"To: {self.to}")
+        if self.cc:
+            print(f"CC: {self.cc}")
+        if self.bcc:
+            print(f"BCC: {self.bcc}")
+        print(f"Subject: {self.subject}")
+        print(f"Body:\n{self.body}")
+        if self.attachments:
+            print(f"Attachments: {', '.join(self.attachments)}")
+        if self.signature:
+            print(f"\n--\n{self.signature}")
+        print("\nEmail sent!\n")
+
+# Simulate client code creating an email
+email = Email(
+    to="user@example.com",
+    subject="Reminder: Team Meeting",
+    body="Don't forget the meeting tomorrow at 10 AM.",
+    cc="teamlead@example.com",
+    bcc=None,
+    attachments=["agenda.pdf", "calendar.ics"],
+    signature="Thanks,\nTeam Ops"
+)
+
+# Send the email
+email.send()
+
+```
+
+**Why It’s a Problem**
+
+* Hard to **read** and **maintain**.
+* You must remember parameter order or use keyword arguments.
+* Adding/removing a parameter means **updating multiple parts** of your codebase.
+* Repetitive/boilerplate logic for default values.
+
+### Enter: Builder Pattern
+
+We separate the **construction logic** (builder) from the **Email object itself**.
+
+#### Class Diagram
+
+
+
+| Component            | Description                                                                      |
+| -------------------- | -------------------------------------------------------------------------------- |
+| **Product**          | The complex object being built (e.g., `Email`). Contains many optional fields.   |
+| **Builder**          | Abstract interface declaring build steps like `set_to()`, `set_subject()`, etc.  |
+| **Concrete Builder** | Implements the builder interface. Handles actual construction of the product.    |
+| **Director**         | _(Optional)_ Encapsulates the building logic. Calls builder methods in sequence. |
+| **Client**           | Initiates the builder and calls the necessary build steps to get the product.    |
+
+Builder Implementation
+
+```python
+# Product
+class Email:
+    def __init__(self, to=None, subject=None, body=None, cc=None, bcc=None, attachments=None, signature=None):
+        self.to = to
+        self.subject = subject
+        self.body = body
+        self.cc = cc
+        self.bcc = bcc
+        self.attachments = attachments or []
+        self.signature = signature
+
+    def send(self):
+        print(f"Sending email to {self.to} with subject '{self.subject}'")
+
+# Builder
+class EmailBuilder:
+    def __init__(self):
+        self.email = Email()
+
+    def set_to(self, to):
+        self.email.to = to
+        return self
+
+    def set_subject(self, subject):
+        self.email.subject = subject
+        return self
+
+    def set_body(self, body):
+        self.email.body = body
+        return self
+
+    def set_cc(self, cc):
+        self.email.cc = cc
+        return self
+
+    def set_signature(self, signature):
+        self.email.signature = signature
+        return self
+
+    def build(self):
+        return self.email
+
+# Client
+builder = EmailBuilder()
+email = (
+    builder.set_to("user@example.com")
+           .set_subject("Builder Pattern")
+           .set_body("Step-by-step construction.")
+           .set_signature("Regards,\nTeam")
+           .build()
+)
+email.send()
+
+```
+
+### Pros and Cons
+
+| Pros                                        | Cons                                        |
+| ------------------------------------------- | ------------------------------------------- |
+| Supports **step-by-step object creation**   | More code (Builder + Product)               |
+| **Avoids telescoping constructors**         | Overkill for simple objects                 |
+| Great for **complex configuration objects** | May add complexity for small-scale projects |
+| Follows **Single Responsibility Principle** |                                             |
 
 ***
 
