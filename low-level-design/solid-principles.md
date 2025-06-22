@@ -270,6 +270,12 @@ class LightSwitch:
             self.device.turn_on()
         else:
             self.device.turn_off()
+            
+
+bulb = LightBulb()
+switch = LightSwitch(bulb)
+switch.operate(True)   # Output: LightBulb ON
+switch.operate(False)  # Output: LightBulb OFF
 
 ```
 
