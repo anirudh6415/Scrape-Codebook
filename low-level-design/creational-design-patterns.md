@@ -208,7 +208,7 @@ You're building a **food delivery application** that supports multiple restauran
 
 You want to ensure that switching from Italian to Mexican cuisine automatically shows the appropriate, consistent set of menu items.
 
-### Naive Implementation :
+#### Naive Implementation :
 
 ```python
 # Italian Menu
@@ -266,20 +266,22 @@ This works, but…
 * Code repetition
 * Violates the **Open/Closed Principle** – adding new cuisines requires editing client logic
 
-### What We Actually Need
+#### What We Actually Need
 
 * Group related components together as **families**
 * Use polymorphism to treat components generically
 * Encapsulate platform- or cuisine-specific creation logic
 * Add new products or product families **without changing core logic**
 
-### Class Diagram Overview
+### Enter: Abstract Factory
+
+#### Class Diagram Overview
 
 <figure><img src="../.gitbook/assets/abstarct_factory_diagram.gif" alt=""><figcaption></figcaption></figure>
 
 <table><thead><tr><th width="189.10089111328125">Component</th><th>Description</th></tr></thead><tbody><tr><td><strong>Abstract Factory</strong></td><td><code>RestaurantFactory</code> – defines <code>create_appetizer()</code>, <code>create_main_course()</code>, <code>create_dessert()</code></td></tr><tr><td><strong>Abstract Products</strong></td><td><code>Appetizer</code>, <code>MainCourse</code>, <code>Dessert</code></td></tr><tr><td><strong>Concrete Factories</strong></td><td><code>ItalianRestaurantFactory</code>, <code>MexicanRestaurantFactory</code>, <code>BakeryFactory</code></td></tr><tr><td><strong>Concrete Products</strong></td><td><code>Bruschetta</code>, <code>Tacos</code>, <code>Croissant</code>, etc.</td></tr><tr><td><strong>Client</strong></td><td>Food delivery app that works with abstract interfaces<br></td></tr></tbody></table>
 
-### Abstract Factory Implementation
+#### Abstract Factory Implementation
 
 ```python
 from abc import ABC, abstractmethod
