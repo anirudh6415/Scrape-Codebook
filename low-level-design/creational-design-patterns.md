@@ -652,3 +652,9 @@ goblin2.display()
 | Good when object creation is **resource-intensive**         | Not ideal for simple objects or stateless classes           |
 
 ***
+
+#### References
+
+{% embed url="https://github.com/ashishps1/awesome-low-level-design" %}
+
+{% embed url="https://refactoring.guru/design-patterns/" %}
