@@ -2,7 +2,7 @@
 
 ## Adapter
 
-<figure><img src="../.gitbook/assets/adapter_design_pattern.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/adapter_design_pattern.png" alt=""><figcaption></figcaption></figure>
 
 > The **Adapter Pattern** is a **structural design pattern** that allows **incompatible interfaces (Classes/Objects)** to work together by **converting one interface into another** that a client expects.
 
