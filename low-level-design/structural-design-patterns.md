@@ -350,7 +350,7 @@ Instead of handling `File` and `Folder` separately, we define a **common interfa
 
 ### Class Diagram
 
-
+<figure><img src="../.gitbook/assets/Composite_class_design_pattern.png" alt=""><figcaption></figcaption></figure>
 
 | Component     | Description                                                      |
 | ------------- | ---------------------------------------------------------------- |
