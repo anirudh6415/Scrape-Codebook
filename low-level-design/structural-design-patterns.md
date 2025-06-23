@@ -286,31 +286,31 @@ Device muted.
 
 ***
 
-## Facade
-
-
-
-***
-
 ## Composite
 
 
 
 ***
 
-## Proxy
+## Decorator &#x20;
 
 
 
 ***
 
-## Decorator&#x20;
+## Facade&#x20;
 
 
 
 ***
 
 ## Flyweight
+
+
+
+***
+
+## Proxy&#x20;
 
 ###
 
