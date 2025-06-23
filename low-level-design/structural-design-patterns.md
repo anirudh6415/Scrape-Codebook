@@ -128,9 +128,159 @@ checkout.process_payment(100)
 
 ***
 
-## Decorator
+## Bridge
 
+> The **Bridge Design Pattern** is a **structural pattern** that **decouples an abstraction from its implementation**, so they can evolve **independently**.
+>
+> "Bridge Pattern helps you avoid having a separate class for **every combination** of feature + platform by splitting them into two parts and connecting them via a bridge."
 
+### When to Use
+
+* When a class has **multiple dimensions of variation** (e.g., types of controls and types of devices).
+* When you want to **avoid deep inheritance trees**.
+* When implementation may **change independently** from the interface.
+
+### The Problem – Remote Controls and Devices
+
+Suppose you have multiple devices (`TV`, `Radio`) and multiple remotes (`BasicRemote`, `AdvancedRemote`). Without bridge:
+
+You’ll need: BasicRemoteForTV, AdvancedRemoteForTV, BasicRemoteForRadio, AdvancedRemoteForRadio\
+→ Combinatorial Explosion!
+
+#### Naive Implementation
+
+```python
+class TV:
+    def turn_on(self):
+        print("TV is ON")
+    def turn_off(self):
+        print("TV is OFF")
+
+class Radio:
+    def turn_on(self):
+        print("Radio is ON")
+    def turn_off(self):
+        print("Radio is OFF")
+
+class BasicRemoteForTV:
+    def __init__(self, tv):
+        self.tv = tv
+    def toggle_power(self):
+        self.tv.turn_on()
+
+class BasicRemoteForRadio:
+    def __init__(self, radio):
+        self.radio = radio
+    def toggle_power(self):
+        self.radio.turn_on()
+
+# Usage
+tv = TV()
+remote = BasicRemoteForTV(tv)
+remote.toggle_power()
+
+```
+
+#### Why It’s a Problem
+
+* Code duplication for each device + remote pair
+* Inflexible and hard to maintain
+* Deep inheritance tree as variations grow
+* What We Really Need: A way to **separate the remote control (abstraction)** from the **device (implementation)** and allow combinations at runtime.
+
+### Enter: Bridge Pattern
+
+The Bridge Pattern splits a class into **two independent hierarchies**:
+
+* **Abstraction** (e.g., Remote)
+* **Implementation** (e.g., Device)
+
+...and connects them using **composition**, not inheritance.
+
+Class Diagram
+
+<figure><img src="../.gitbook/assets/Bridge_class_design_pattern.png" alt=""><figcaption></figcaption></figure>
+
+<table><thead><tr><th width="273">Component</th><th>Description</th></tr></thead><tbody><tr><td><strong>Abstraction</strong></td><td>Interface that defines high-level operations (e.g., Remote)</td></tr><tr><td><strong>Refined Abstraction</strong></td><td>Extended version of Abstraction (e.g., AdvancedRemote)</td></tr><tr><td><strong>Implementor</strong></td><td>Interface for low-level operations (e.g., Device)</td></tr><tr><td><strong>Concrete Implementor</strong></td><td>Concrete classes implementing device behavior (e.g., TV, Radio)</td></tr></tbody></table>
+
+Code
+
+```python
+# Implementor Interface
+class Device:
+    def turn_on(self): pass
+    def turn_off(self): pass
+
+# Concrete Implementors
+class TV(Device):
+    def turn_on(self):
+        print("TV is ON")
+    def turn_off(self):
+        print("TV is OFF")
+
+class Radio(Device):
+    def turn_on(self):
+        print("Radio is ON")
+    def turn_off(self):
+        print("Radio is OFF")
+
+# Abstraction
+class Remote:
+    def __init__(self, device: Device):
+        self.device = device
+        self.is_on = False
+
+    def toggle_power(self):
+        if self.is_on:
+            self.device.turn_off()
+            self.is_on = False
+        else:
+            self.device.turn_on()
+            self.is_on = True
+
+# Refined Abstraction
+class AdvancedRemote(Remote):
+    def mute(self):
+        print("Device muted.")
+
+# Usage
+tv = TV()
+radio = Radio()
+
+remote1 = Remote(tv)
+remote2 = AdvancedRemote(radio)
+
+remote1.toggle_power()       # TV is ON
+remote1.toggle_power()       # TV is OFF
+remote2.toggle_power()       # Radio is ON
+remote2.mute()               # Device muted.
+
+```
+
+Output:
+
+```vbnet
+TV is ON
+TV is OFF
+Radio is ON
+Device muted.
+```
+
+#### What We Achieved
+
+* Separated interface (Remote) from implementation (Device)
+* Easily extended on either side independently
+* No combinatorial explosion of classes
+* Flexible runtime composition
+
+### Pros and Cons
+
+| Pros                                                   | Cons                                         |
+| ------------------------------------------------------ | -------------------------------------------- |
+| Decouples abstraction from implementation              | Adds slight complexity via extra layers      |
+| Easy to **extend or change** parts independently       | Requires good planning of abstraction levels |
+| Avoids class explosion with multi-dimensional features | May be overkill for very simple scenarios    |
+| Good for platform-specific variations (e.g., UI, APIs) |                                              |
 
 ***
 
@@ -152,7 +302,7 @@ checkout.process_payment(100)
 
 ***
 
-## Bridge
+## Decorator&#x20;
 
 
 
