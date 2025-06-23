@@ -288,7 +288,7 @@ Device muted.
 
 ## Composite
 
-<figure><img src="../.gitbook/assets/Composite_design_pattern.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Composite_design_pattern.png" alt=""><figcaption></figcaption></figure>
 
 > The **Composite Pattern** is a **structural design pattern** that lets you **treat individual objects and compositions of objects uniformly**.
 >
