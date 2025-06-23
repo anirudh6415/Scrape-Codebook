@@ -288,6 +288,8 @@ Device muted.
 
 ## Composite
 
+<figure><img src="../.gitbook/assets/Composite_design_pattern.png" alt="" width="375"><figcaption></figcaption></figure>
+
 
 
 ***
