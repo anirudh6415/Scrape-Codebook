@@ -290,7 +290,154 @@ Device muted.
 
 <figure><img src="../.gitbook/assets/Composite_design_pattern.png" alt="" width="375"><figcaption></figcaption></figure>
 
+> The **Composite Pattern** is a **structural design pattern** that lets you **treat individual objects and compositions of objects uniformly**.
+>
+> "It allows you to treat a **single file** and a **folder of files** the same way — so you don't need to write separate logic for one vs. many."
 
+### When to Use
+
+* When you need to **represent part-whole hierarchies** (e.g., folders and files, shapes inside groups).
+* When you want to **treat individual and grouped objects** uniformly.
+* To **avoid complex branching logic** in client code.
+
+### The Problem – File System
+
+Let’s say you’re building a file explorer. Some files are **individual files**, others are **folders** containing files.
+
+```python
+class File:
+    def __init__(self, name):
+        self.name = name
+
+    def open(self):
+        print(f"Opening file: {self.name}")
+
+class Folder:
+    def __init__(self, name):
+        self.name = name
+        self.children = []
+
+    def add(self, item):
+        self.children.append(item)
+
+    def open(self):
+        print(f"Opening folder: {self.name}")
+        for child in self.children:
+            if isinstance(child, File):
+                child.open()
+            elif isinstance(child, Folder):
+                child.open()
+
+# Client code
+f1 = File("file1.txt")
+f2 = File("file2.txt")
+folder = Folder("Docs")
+folder.add(f1)
+folder.add(f2)
+folder.open()
+
+```
+
+#### Why It’s a Problem
+
+* Client or composite (`Folder`) has to manually check `isinstance()` to treat leafs and composites differently.
+* This violates **Open/Closed Principle** and is harder to extend.
+* Repeating logic across multiple composite nodes.
+
+### Enter: Composite Pattern
+
+Instead of handling `File` and `Folder` separately, we define a **common interface**, and treat both as `Component`s. This lets us **invoke `.open()`** on a `File` or a `Folder` **without worrying which one it is**.
+
+### Class Diagram
+
+
+
+| Component     | Description                                                      |
+| ------------- | ---------------------------------------------------------------- |
+| **Client**    | Uses the component interface to interact with both files/folders |
+| **Component** | Abstract interface (`open()`) common to both leaf and composite  |
+| **Leaf**      | `File` – Implements `open()` directly                            |
+| **Composite** | `Folder` – Stores children and delegates calls to them           |
+
+### Code
+
+```python
+from abc import ABC, abstractmethod
+
+# Component Interface
+class FileSystemComponent(ABC):
+    @abstractmethod
+    def open(self):
+        pass
+
+# Leaf
+class File(FileSystemComponent):
+    def __init__(self, name):
+        self.name = name
+
+    def open(self):
+        print(f"Opening file: {self.name}")
+
+# Composite
+class Folder(FileSystemComponent):
+    def __init__(self, name):
+        self.name = name
+        self.children = []
+
+    def add(self, component: FileSystemComponent):
+        self.children.append(component)
+
+    def open(self):
+        print(f"Opening folder: {self.name}")
+        for child in self.children:
+            child.open()
+
+# Client Code
+f1 = File("file1.txt")
+f2 = File("file2.txt")
+f3 = File("file3.txt")
+
+docs = Folder("Docs")
+docs.add(f1)
+docs.add(f2)
+
+images = Folder("Images")
+images.add(f3)
+
+root = Folder("Root")
+root.add(docs)
+root.add(images)
+
+root.open()
+
+```
+
+#### Output
+
+```
+Opening folder: Root
+Opening folder: Docs
+Opening file: file1.txt
+Opening file: file2.txt
+Opening folder: Images
+Opening file: file3.txt
+```
+
+#### What We Achieved
+
+* **Uniform treatment** of both files and folders
+* Clean and recursive design without `isinstance()` checks
+* Easy to add new node types (e.g., Symlink) by just implementing the `Component` interface
+* Adheres to **Open/Closed Principle**
+
+### Pros and  Cons
+
+| Pros                                            | Cons                                             |
+| ----------------------------------------------- | ------------------------------------------------ |
+| Treats **single and grouped objects uniformly** | Can be **overkill** for simple flat structures   |
+| Encourages clean recursive logic                | Slightly more **boilerplate** due to interfaces  |
+| Simplifies **client code**                      | Needs careful design to prevent circular nesting |
+| Easy to extend and refactor                     |                                                  |
 
 ***
 
