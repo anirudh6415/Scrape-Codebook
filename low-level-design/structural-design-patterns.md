@@ -130,6 +130,8 @@ checkout.process_payment(100)
 
 ## Bridge
 
+<figure><img src="../.gitbook/assets/Bridge_design_pattern.png" alt=""><figcaption></figcaption></figure>
+
 > The **Bridge Design Pattern** is a **structural pattern** that **decouples an abstraction from its implementation**, so they can evolve **independently**.
 >
 > "Bridge Pattern helps you avoid having a separate class for **every combination** of feature + platform by splitting them into two parts and connecting them via a bridge."
