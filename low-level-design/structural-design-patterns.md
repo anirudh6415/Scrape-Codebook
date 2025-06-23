@@ -348,7 +348,7 @@ folder.open()
 
 Instead of handling `File` and `Folder` separately, we define a **common interface**, and treat both as `Component`s. This lets us **invoke `.open()`** on a `File` or a `Folder` **without worrying which one it is**.
 
-### Class Diagram
+#### Class Diagram
 
 <figure><img src="../.gitbook/assets/Composite_class_design_pattern.png" alt=""><figcaption></figcaption></figure>
 
@@ -359,7 +359,7 @@ Instead of handling `File` and `Folder` separately, we define a **common interfa
 | **Leaf**      | `File` – Implements `open()` directly                            |
 | **Composite** | `Folder` – Stores children and delegates calls to them           |
 
-### Code
+#### Code
 
 ```python
 from abc import ABC, abstractmethod
