@@ -199,13 +199,13 @@ The Bridge Pattern splits a class into **two independent hierarchies**:
 
 ...and connects them using **composition**, not inheritance.
 
-Class Diagram
+#### Class Diagram
 
 <figure><img src="../.gitbook/assets/Bridge_class_design_pattern.png" alt=""><figcaption></figcaption></figure>
 
 <table><thead><tr><th width="273">Component</th><th>Description</th></tr></thead><tbody><tr><td><strong>Abstraction</strong></td><td>Interface that defines high-level operations (e.g., Remote)</td></tr><tr><td><strong>Refined Abstraction</strong></td><td>Extended version of Abstraction (e.g., AdvancedRemote)</td></tr><tr><td><strong>Implementor</strong></td><td>Interface for low-level operations (e.g., Device)</td></tr><tr><td><strong>Concrete Implementor</strong></td><td>Concrete classes implementing device behavior (e.g., TV, Radio)</td></tr></tbody></table>
 
-Code
+#### Code
 
 ```python
 # Implementor Interface
@@ -259,7 +259,7 @@ remote2.mute()               # Device muted.
 
 ```
 
-Output:
+#### Output:
 
 ```vbnet
 TV is ON
