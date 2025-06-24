@@ -443,6 +443,8 @@ Opening file: file3.txt
 
 ## Decorator &#x20;
 
+<figure><img src="../.gitbook/assets/Decorate design pattern (1).png" alt=""><figcaption></figcaption></figure>
+
 
 
 ***
