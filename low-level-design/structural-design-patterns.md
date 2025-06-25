@@ -517,7 +517,7 @@ We define a **core component** (`Notifier`) and then decorate it dynamically at 
 
 #### Class Diagram
 
-
+<figure><img src="../.gitbook/assets/Decorate class design pattern.png" alt=""><figcaption></figcaption></figure>
 
 | Component                | Description                                                      |
 | ------------------------ | ---------------------------------------------------------------- |
