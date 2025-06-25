@@ -605,6 +605,8 @@ Sending Facebook message: New promotion available!
 
 ## Facade&#x20;
 
+<figure><img src="../.gitbook/assets/facade design pattern-1.png" alt=""><figcaption><p>When you check into a hotel, you don’t talk to the cleaning staff, kitchen, or maintenance directly. Instead, you go to the front desk (the facade), which handles your requests and communicates with the right departments behind the scenes.</p></figcaption></figure>
+
 
 
 ***
