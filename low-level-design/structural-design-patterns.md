@@ -445,7 +445,161 @@ Opening file: file3.txt
 
 <figure><img src="../.gitbook/assets/Decorate design pattern.png" alt=""><figcaption></figcaption></figure>
 
+> The **Decorator Pattern** is a **structural pattern** that lets you **dynamically add new behavior** or responsibilities to an object **without modifying its structure or code**.\
+> \
+> "It’s like gift-wrapping an object: you still have the same object inside, but you can add as many layers (decorators) around it as you like—each adding new functionality."
 
+### When to Use
+
+* To **extend the functionality** of a class without subclassing it
+* To **compose behaviors at runtime** in different combinations
+* To avoid **bloated classes** with multiple `if/else` flags for optional features
+
+### The Problem – Social Notifications&#x20;
+
+You have a system that sends notifications to users. Sometimes they get only email, other times email + SMS, or all platforms (email + Slack + Instagram...).
+
+<pre class="language-python"><code class="lang-python">class Notifier:
+    def __init__(self, use_sms=False, use_slack=False, use_facebook=False):
+        self.use_sms = use_sms
+        self.use_slack = use_slack
+        self.use_facebook = use_facebook
+
+    def send(self, message):
+        print(f"Sending Email: {message}")
+
+        if self.use_sms:
+            print(f"Sending SMS: {message}")
+        
+        if self.use_slack:
+            print(f"Sending Slack message: {message}")
+        
+        if self.use_facebook:
+            print(f"Sending Facebook message: {message}")
+
+# Client Code
+# Send only email
+notifier1 = Notifier()
+notifier1.send("Welcome to the platform!")
+
+# Send email + SMS
+notifier2 = Notifier(use_sms=True)
+notifier2.send("You have a new alert!")
+
+# Send email + all platforms
+notifier3 = Notifier(use_sms=True, use_slack=True, use_facebook=True)
+notifier3.send("Big news: Major update released!")
+
+============================================================
+Output
+Sending Email: Welcome to the platform!
+
+Sending Email: You have a new alert!
+Sending SMS: You have a new alert!
+
+Sending Email: Big news: Major update released!
+Sending SMS: Big news: Major update released!
+<strong>Sending Slack message: Big news: Major update released!
+</strong>Sending Facebook message: Big news: Major update released!
+
+</code></pre>
+
+#### **Why It's a Problem**
+
+* Hardcoded logic makes it **non-extensible**
+* Adding/removing platforms requires changing the core class
+* **Violates Open/Closed Principle**
+* Combinations require multiple flags or subclasses
+
+### Enter: Decorator Pattern
+
+We define a **core component** (`Notifier`) and then decorate it dynamically at runtime with new responsibilities (`SMSDecorator`, `SlackDecorator`, etc.).
+
+#### Class Diagram
+
+
+
+| Component                | Description                                                      |
+| ------------------------ | ---------------------------------------------------------------- |
+| **Client**               | Uses the `Notifier` interface                                    |
+| **Component**            | Common interface for all notifiers (`send(message)`)             |
+| **Concrete Component**   | Base notifier (e.g., `EmailNotifier`)                            |
+| **Decorator (abstract)** | Holds reference to a `Notifier`; implements same interface       |
+| **Concrete Decorators**  | Add functionality like SMS, Slack, etc. around the base notifier |
+
+#### Code
+
+```python
+from abc import ABC, abstractmethod
+
+# Component
+class Notifier(ABC):
+    @abstractmethod
+    def send(self, message): pass
+
+# Concrete Component
+class EmailNotifier(Notifier):
+    def send(self, message):
+        print(f"Sending Email: {message}")
+
+# Decorator (abstract)
+class NotifierDecorator(Notifier):
+    def __init__(self, wrappee: Notifier):
+        self.wrappee = wrappee
+
+    def send(self, message):
+        self.wrappee.send(message)
+
+# Concrete Decorators
+class SMSDecorator(NotifierDecorator):
+    def send(self, message):
+        super().send(message)
+        print(f"Sending SMS: {message}")
+
+class SlackDecorator(NotifierDecorator):
+    def send(self, message):
+        super().send(message)
+        print(f"Sending Slack message: {message}")
+
+class FacebookDecorator(NotifierDecorator):
+    def send(self, message):
+        super().send(message)
+        print(f"Sending Facebook message: {message}")
+
+# Client Code
+notifier = EmailNotifier()
+notifier = SMSDecorator(notifier)
+notifier = SlackDecorator(notifier)
+notifier = FacebookDecorator(notifier)
+
+notifier.send("New promotion available!")
+
+```
+
+Output
+
+```
+Sending Email: New promotion available!
+Sending SMS: New promotion available!
+Sending Slack message: New promotion available!
+Sending Facebook message: New promotion available!
+```
+
+#### What We Achieved
+
+* Added new behaviors **without modifying base class**
+* Flexible and composable - decorators can be **stacked dynamically**
+* Adheres to **Open/Closed Principle**
+* Clean and scalable for adding new channels
+
+### Pros and Cons
+
+| Pros                                            | Cons                                                      |
+| ----------------------------------------------- | --------------------------------------------------------- |
+| Add behavior **without changing existing code** | Many small classes can clutter the codebase               |
+| **Flexible combinations** of functionality      | Debugging layered decorators may be harder                |
+| Follows **Open/Closed Principle**               | Execution order can affect results if not managed clearly |
+| Can be added or removed **at runtime**          | Adds runtime overhead with multiple wrappers              |
 
 ***
 
