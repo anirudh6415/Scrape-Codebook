@@ -72,6 +72,10 @@
   * [Prompt Engineering Techniques](genai-+-llms/genai-+-llms/prompt-engineering-techniques.md)
   * [Evaluation of LLMs](genai-+-llms/genai-+-llms/evaluation-of-llms.md)
 
+## GPU Mode
+
+* [Nvidia GPU Basics](gpu-mode/nvidia-gpu-basics.md)
+
 ## System Design for ML
 
 * [System Design ](system-design-for-ml/page-4.md)
