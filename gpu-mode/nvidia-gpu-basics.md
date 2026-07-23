@@ -1,5 +1,7 @@
 # Nvidia GPU Basics
 
+<figure><img src="../.gitbook/assets/image (28).png" alt=""><figcaption><p><a href="https://developer.nvidia.com/blog/cuda-refresher-cuda-programming-model/"><em>Kernel execution on GPU.</em></a></p></figcaption></figure>
+
 ### Kernels&#x20;
 
 Kernels are kind of custom functions that run on the device (GPU), called from the host (CPU). They\
