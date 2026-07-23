@@ -17,8 +17,7 @@ $$
 ### **L2 Regularization (Ridge)**
 
 * **What:** Adds the sum of the squared values of the coefficients as a penalty term to the loss function.
-*   **Why:** Prevents large weights but does not eliminate features entirely.\
-
+*   **Why:** Prevents large weights but does not eliminate features entirely.<br>
 
     $$
     L = \text{Loss Function} + \lambda \sum_{i=1}^{n} w_i^2
@@ -27,8 +26,7 @@ $$
 ### **Elastic Net (Combination of L1 and L2)**
 
 * **What:** Combines both L1 and L2 penalties, offering the benefits of both Lasso and Ridge regularization.
-*   **Why:** Useful when there are multiple correlated features.\
-
+*   **Why:** Useful when there are multiple correlated features.<br>
 
     $$
     L = \text{Loss Function} + \lambda_1 \sum_{i=1}^{n} |w_i| + \lambda_2 \sum_{i=1}^{n} w_i^2
