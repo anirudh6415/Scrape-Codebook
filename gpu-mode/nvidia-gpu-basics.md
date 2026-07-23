@@ -75,6 +75,14 @@ accomplished most simply by executing kernels with sufficiently large grid and b
 
 For reference, the A100 has 108 SMs; the H200 (Hopper) has 132 (SXM) or 114 (NVL) SMs; and the B300 (Blackwell Ultra) features up to 160 SMs across two dies. All three architectures support up to 64 warps and a maximum of 2,048 threads per SM.
 
+### Memory Hierarchy
+
+<figure><img src="../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+
+The optimization game is almost always: move data from slow global memory into fast shared memory or registers, compute there, then write results back once.&#x20;
+
+<table><thead><tr><th width="204.28515625">Level</th><th width="88.91015625">Type</th><th width="99.76171875">Latency</th><th width="130.203125">Managed By</th><th width="100.5859375">Volatile</th><th width="115.8359375">Size (typical)</th></tr></thead><tbody><tr><td>Registers</td><td>on-chip <br></td><td></td><td></td><td></td><td></td></tr><tr><td>L1 Cache / Shared Memory</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>L2 Cache</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Global Memory (VRAM/HBM)</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Main Memory (RAM)</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>SSD</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>HDD</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Cloud / Remote Storage </td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+
 ### Grid Stride Loop
 
 When working with Larger data, there are more data elements than the threads in the grid. So in such cases threads cannot work on only one element, So it requires benifits of [memory coalescing](https://homepages.math.uic.edu/~jan/mcs572f16/mcs572notes/lec35.html), Which could allow threads to work in prallel to access memory in contigous chuncks, a scenario which the GPU can leverage to reduce the total number of memory operations.
