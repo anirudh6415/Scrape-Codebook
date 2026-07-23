@@ -81,13 +81,58 @@ For reference, the A100 has 108 SMs; the H200 (Hopper) has 132 (SXM) or 114 (NVL
 
 The optimization game is almost always: move data from slow global memory into fast shared memory or registers, compute there, then write results back once.&#x20;
 
-<table><thead><tr><th width="204.28515625">Level</th><th width="88.91015625">Type</th><th width="99.76171875">Latency</th><th width="130.203125">Managed By</th><th width="100.5859375">Volatile</th><th width="115.8359375">Size (typical)</th></tr></thead><tbody><tr><td>Registers</td><td>on-chip <br></td><td></td><td></td><td></td><td></td></tr><tr><td>L1 Cache / Shared Memory</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>L2 Cache</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Global Memory (VRAM/HBM)</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Main Memory (RAM)</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>SSD</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>HDD</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Cloud / Remote Storage </td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+<table><thead><tr><th width="204.28515625">Level</th><th width="96.7421875">Type</th><th width="100.7109375">Latency</th><th width="126.6015625">Managed By</th><th width="102.5078125">Volatile</th><th width="105.93359375">Size (typical)</th></tr></thead><tbody><tr><td>Registers</td><td>on-chip <br>flip-flops</td><td>~ 1 cycle</td><td>Compiler</td><td>Yes</td><td>~255 regs per thread</td></tr><tr><td>L1 Cache / Shared Memory</td><td>on-chip SRAM</td><td>~ 50-30 cycle</td><td><p>Hardware/</p><p>Programmer</p></td><td>Yes</td><td>32 - 164 KB per SM</td></tr><tr><td>L2 Cache</td><td>on-chip SRAM</td><td>~ 30-100 cycle</td><td>Hardware</td><td>Yes</td><td>4 -40 MB</td></tr><tr><td>Global Memory (VRAM/HBM)</td><td>off-chip SRAM</td><td>~ 400-800 cycle</td><td>Programmer</td><td>Yes</td><td>8 -80 GB</td></tr><tr><td>Main Memory (RAM)</td><td>off-chip SRAM</td><td>~ 10 ns </td><td>OS</td><td>Yes</td><td>32 GB - 2 TB</td></tr><tr><td>SSD</td><td>NAND Flash</td><td>~50-200 µs</td><td>OS / Filesystem</td><td>No</td><td>256 GB - 8 TB</td></tr><tr><td>HDD</td><td>Magnetic Disk</td><td>~5-10 ms</td><td>OS / Filesystem</td><td>No</td><td>1 TB - 20 TB</td></tr><tr><td>Cloud / Remote Storage </td><td>Network + Disk</td><td>~10-150 ms</td><td>Cloud Provider</td><td>No</td><td>Unlimited </td></tr></tbody></table>
+
+The top four rows are what matter for GPU programming. Registers through Global Memory are all on or near the GPU. Everything below Global Memory is on the CPU side by the time your data is sitting in Global Memory on the GPU it has already been copied up from RAM over PCIe. The jump from L2 Cache to Global Memory (\~100x slower) is the most important gap to internalize.
+
+### Memory Coalescing
+
+When threads in the same warp access contiguous memory addresses, the GPU hardware combines those 32 individual memory requests into a single wide memory transaction. This is called a coalesced access and it dramatically reduces the total number of memory operations, which matters a lot because global memory is hundreds of cycles slow.
+
+_Coalesced (good):_
+
+```python
+ val = array[threadIdx.x] 
+ ##  Thread i accesses array[i], all 32 warp threads hit consecutive addresses, one transaction
+```
+
+_Uncoalesced (bad):_
+
+```python
+ val = array[threadIdx.x * 128]
+ ##  Thread i accesses array[i * 128], addresses are scattered, forces 32 separate transactions
+```
+
+In Triton, coalescing is baked into the default block pointer model. Loading a contiguous block of memory is the natural way to write Triton code:&#x20;
+
+```python
+offsets = pid * BLOCK_SIZE + tl.arange(0, BLOCK_SIZE) 
+data = tl.load(ptr + offsets, mask=offsets < N)
+```
+
+{% hint style="info" %}
+_Note: grid stride loops preserve coalescing because consecutive threads still access consecutive memory addresses within each iteration._
+{% endhint %}
 
 ### Grid Stride Loop
 
-When working with Larger data, there are more data elements than the threads in the grid. So in such cases threads cannot work on only one element, So it requires benifits of [memory coalescing](https://homepages.math.uic.edu/~jan/mcs572f16/mcs572notes/lec35.html), Which could allow threads to work in prallel to access memory in contigous chuncks, a scenario which the GPU can leverage to reduce the total number of memory operations.
+When working with Larger data, there are more data elements than the threads in the grid. So in such cases threads cannot work on only one element, So it requires benefits of [memory coalescing](https://homepages.math.uic.edu/~jan/mcs572f16/mcs572notes/lec35.html), Which could allow threads to work in parallel to access memory in contiguous chunks, a scenario which the GPU can leverage to reduce the total number of memory operations.
 
-Grid stride loop is a programming pattern where thread processes multiple data elements by looping through an array, stepping forward by the total number of threads in the entire grid. This design pattern provides flexibility for any dataset size, improves debugging and maximizes hardware efficency.&#x20;
+A grid stride loop is a programming pattern where each thread processes multiple data elements by looping through an array, stepping forward by the total number of threads in the entire grid (the stride). This design pattern provides flexibility for any dataset size, improves debugging and maximizes hardware efficiency.
+
+In Triton, the equivalent is masking. Triton does not loop at the thread level, instead each program\
+handles a block of data and the mask handles any remainder when N is not evenly divisible by\
+BLOCK\_SIZE:
+
+```python
+@triton.jit
+def kernel(ptr, N, BLOCK_SIZE: tl.constexpr):
+  pid = tl.program_id(axis=0)
+  offsets = pid * BLOCK_SIZE + tl.arange(0, BLOCK_SIZE)
+  mask = offsets < N
+  data = tl.load(ptr + offsets, mask=mask)
+  tl.store(ptr + offsets, data * 2, mask=mask)
+```
 
 #### The Real-World Scenario: Running Llama 3 Inference
 
@@ -114,12 +159,37 @@ Here is exactly how the math and code work inside that GPU hardware:
    3. **Iteration 3:** Every thread jumps forward by another (65,536) to process indices starting at `131,072`.
    4. This repeats until all 1,000,000 elements are computed.
 
+{% hint style="info" %}
+In production PyTorch, the Triton kernel generated by torch.compile for the activation function in\
+Llama 3 uses exactly the masking pattern above to handle variable sequence lengths.
+{% endhint %}
+
+### Occupancy
+
+Occupancy is the ratio of active warps on an SM to the maximum warps the SM can theoretically support.
+
+```
+Occupancy = Active Warps on SM / Max Warps SM Supports
+```
+
+Higher occupancy gives the warp scheduler more warps to switch between, which improves latency hiding. But occupancy is constrained by three shared resources on the SM:
+
+* Registers per thread - more registers used per thread means fewer threads fit on the SM, which lowers occupancy
+* Shared memory per block - more shared memory used per block means fewer blocks fit on the SM, which lowers occupancy
+* Block size - too small means blocks do not fill the SM, too large means fewer blocks fit
+
+The tradeoff is that using more registers or shared memory per thread improves per-thread performance but reduces occupancy. Real optimization is finding the right balance. The ncu profiler (NVIDIA Nsight Compute) measures this directly on real hardware.
+
+In Triton, BLOCK\_SIZE is the main occupancy lever. Triton's triton.autotune decorator automates searching over block sizes and other config parameters to find the best occupancy for your specific hardware.
+
 ### Atomic Operations&#x20;
 
-CUDA, like many general purpose parallel execution frameworks, makes it possible to have race conditions in your code. A race condition in CUDA arises when threads read to or write from a memory location that might be modified by another independent thread. Generally speaking, you need to worry about:
+CUDA, like many general purpose parallel execution frameworks, makes it possible to have race\
+conditions in your code. A race condition in CUDA arises when threads read or write to a memory\
+location that might be modified by another independent thread. Generally speaking, you need to worry about:
 
-* read-after-write hazards: One thread is reading a memory location at the same time another thread might be writing to it.
-* write-after-write hazards: Two threads are writing to the same memory location, and only one write will be visible when the kernel is complete.
+* Read-after-write hazards: One thread is reading a memory location at the same time another thread might be writing to it.
+* Write-after-write hazards: Two threads are writing to the same memory location, and only one write will be visible when the kernel is complete.
 
 A common strategy to avoid both of these hazards is to organize your CUDA kernel algorithm such that each thread has exclusive responsibility for unique subsets of output array elements, and/or to never use the same array for both input and output in a single kernel call. (Iterative algorithms can use a double-buffering strategy if needed, and switch input and output arrays on each iteration.)
 
@@ -129,9 +199,25 @@ However, there are many cases where different threads need to combine results. C
 2. Compute `counter + 1`.
 3. Write that value back to global memory.
 
-However, there is no guarantee that another thread has not changed the global counter between steps 1 and 3. To resolve this problem, CUDA provides **atomic operations** which will read, modify and update a memory location in one, indivisible step.&#x20;
+However, there is no guarantee that another thread has not changed the global counter between steps 1 and 3. To resolve this problem, CUDA provides atomic operations which will read, modify and update a memory location in one, indivisible step.&#x20;
 
-A real world example example of atomic operations a computer vision model analyzes an image, it needs to count how many pixels have a specific brightness value (from 0 to 255). Because millions of pixels share the same color values, thousands of GPU threads will try to increment the exact same counter at the exact same time.&#x20;
+_Triton:_
+
+```python
+tl.atomic_add(ptr + offset, value)
+```
+
+A real world example: a computer vision model analyzes an image and needs to count how many pixels have a specific brightness value (from 0 to 255). Because millions of pixels share the same color values, thousands of GPU threads will try to increment the exact same counter at the exact same time. Without atomics, most increments are lost silently. With atomics, every increment is counted correctly.
+
+Critical limitation: Atomics on global memory are slow because they serialize access to that address. Under high contention (many threads hitting the same counter), performance degrades badly.
+
+Production pattern - Privatization + Reduction: Instead of every thread atomically hitting global memory directly:
+
+1. Each block builds its own local histogram in shared memory (fast, no contention between blocks)
+2. `__syncthreads()` ensures all threads in the block are done
+3. One thread per block does a single atomic add from shared memory to global memory
+
+This reduces global atomic contention from num\_threads operations down to num\_blocks operations, which is orders of magnitude fewer collisions.
 
 <br>
 
